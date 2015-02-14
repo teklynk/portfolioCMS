@@ -15,4 +15,5 @@ $db_conn = mysql_connect($db_servername, $db_username, $db_password);
 mysql_select_db($db_name, $db_conn);
 
 //connection is closed in includes/footer.php
+
 ?>
