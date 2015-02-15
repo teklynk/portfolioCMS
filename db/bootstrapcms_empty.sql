@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 02, 2015 at 01:44 AM
+-- Generation Time: Feb 14, 2015 at 10:31 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.3.28
 
@@ -16,7 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-
 -- --------------------------------------------------------
 
 --
@@ -27,6 +26,13 @@ CREATE TABLE IF NOT EXISTS `aboutus` (
   `heading` text NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `aboutus`
+--
+
+INSERT INTO `aboutus` (`heading`, `content`) VALUES
+('About', '');
 
 -- --------------------------------------------------------
 
@@ -45,6 +51,13 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   `phone` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `contactus`
+--
+
+INSERT INTO `contactus` (`heading`, `email`, `sendtoemail`, `address`, `city`, `state`, `zipcode`, `phone`) VALUES
+('Contact', '', '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +68,13 @@ CREATE TABLE IF NOT EXISTS `footer` (
   `heading` text NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `footer`
+--
+
+INSERT INTO `footer` (`heading`, `content`) VALUES
+('Around the Net', '');
 
 -- --------------------------------------------------------
 
@@ -68,6 +88,13 @@ CREATE TABLE IF NOT EXISTS `landing` (
   `skills` text NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `landing`
+--
+
+INSERT INTO `landing` (`heading`, `introtext`, `skills`, `image`) VALUES
+('Freelancer', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -83,7 +110,14 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `active` int(11) NOT NULL,
   `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `title`, `thumbnail`, `content`, `active`, `datetime`) VALUES
+(25, 'test', '', '<p>test</p>', 1, '2015-02-14 22:06:48');
 
 -- --------------------------------------------------------
 
@@ -102,6 +136,13 @@ CREATE TABLE IF NOT EXISTS `setup` (
   `portfolioheading` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `setup`
+--
+
+INSERT INTO `setup` (`title`, `keywords`, `description`, `headercode`, `author`, `googleanalytics`, `tinymce`, `portfolioheading`) VALUES
+('portfolioCMS', '', '', '', '', '', 1, '');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +157,13 @@ CREATE TABLE IF NOT EXISTS `socialmedia` (
   `google` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `socialmedia`
+--
+
+INSERT INTO `socialmedia` (`heading`, `facebook`, `twitter`, `linkedin`, `google`) VALUES
+('Follow Me', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -127,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
