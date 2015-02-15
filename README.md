@@ -7,5 +7,13 @@ In general, the code and database is really simple. Implementing the site on you
 
 Enjoy!
 
+# Install Instructions
+Open phpmyadmin and create a database.
+Go to your database and click the Import tab at the top.
+Go to "File to Import" and browse to the bootstrapcms_empty.sql file and click GO.
+Once the tables have been created, select the users table.
+Click the Insert tab and enter a username and password in the value fields and click GO. 
+You can now visit http://www.yourwebsite.com/admin and login. 
+
 ![screenshot02](https://cloud.githubusercontent.com/assets/4500737/6201711/91671f84-b487-11e4-8b32-ff8e3ca482b4.png)
 ![screenshot01](https://cloud.githubusercontent.com/assets/4500737/6201712/91681d94-b487-11e4-872e-0259535cdb21.png)
