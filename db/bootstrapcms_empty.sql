@@ -16,6 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+
 -- --------------------------------------------------------
 
 --
@@ -141,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `setup` (
 --
 
 INSERT INTO `setup` (`title`, `keywords`, `description`, `headercode`, `author`, `googleanalytics`, `tinymce`, `portfolioheading`) VALUES
-('portfolioCMS', '', '', '', '', '', 1, '');
+('portfolioCMS', '', '', '', '', '', 1, 'Portfolio');
 
 -- --------------------------------------------------------
 
