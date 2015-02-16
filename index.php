@@ -72,7 +72,7 @@
 		$sqlContact = mysql_query("SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
 		$rowContact = mysql_fetch_array($sqlContact);
 		
-		$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google FROM socialmedia");
+		$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
 		$rowSocial = mysql_fetch_array($sqlSocial);
 	?>
     <!-- Navigation -->
@@ -192,7 +192,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="sentMessage" id="contactForm" method="post" action="mail/contact_me.php">
+                    <form name="sentMessage" id="contactForm" method="post" action="mail/sendmail.asp">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Name</label>
@@ -255,34 +255,41 @@
                     <div class="footer-col col-md-4">
                         <h3><?php echo $rowSocial["heading"];?></h3>
                         <ul class="list-inline">
-                            <li>
+                            
 								<?php
 									if (!empty($rowSocial["facebook"])){
-										echo "<a href=".$rowSocial["facebook"]." class='btn-social btn-outline'><i class='fa fa-fw fa-facebook'></i></a>";
+										echo "<li><a href=".$rowSocial["facebook"]." class='btn-social btn-outline'><i class='fa fa-fw fa-facebook'></i></a></li>";
 									}
 								?>
-                            </li>
-                            <li>
+                            
+                            
 								<?php
 									if (!empty($rowSocial["google"])){
-										echo "<a href=".$rowSocial["google"]." class='btn-social btn-outline'><i class='fa fa-fw fa-google-plus'></i></a>";
+										echo "<li><a href=".$rowSocial["google"]." class='btn-social btn-outline'><i class='fa fa-fw fa-google-plus'></i></a></li>";
 									}
 								?>
-                            </li>
-                            <li>
+                            
+                            
+								<?php
+									if (!empty($rowSocial["github"])){
+										echo "<li><a href=".$rowSocial["github"]." class='btn-social btn-outline'><i class='fa fa-fw fa-github'></i></a></li>";
+									}
+								?>
+                            
+                            
 								<?php
 									if (!empty($rowSocial["twitter"])){
-										echo "<a href=".$rowSocial["twitter"]." class='btn-social btn-outline'><i class='fa fa-fw fa-twitter'></i></a>";
+										echo "<li><a href=".$rowSocial["twitter"]." class='btn-social btn-outline'><i class='fa fa-fw fa-twitter'></i></a></li>";
 									}
 								?>
-                            </li>
-                            <li>
+                            
+                            
 								<?php
 									if (!empty($rowSocial["linkedin"])){
-										echo "<a href=".$rowSocial["linkedin"]." class='btn-social btn-outline'><i class='fa fa-fw fa-linkedin'></i></a>";
+										echo "<li><a href=".$rowSocial["linkedin"]." class='btn-social btn-outline'><i class='fa fa-fw fa-linkedin'></i></a></li>";
 									}
 								?>
-                            </li>
+                            
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">

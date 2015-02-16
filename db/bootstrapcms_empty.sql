@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 14, 2015 at 10:31 PM
+-- Generation Time: Feb 16, 2015 at 12:07 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.3.28
 
@@ -16,6 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+--
+-- Database: `bootstrap_cms_2`
+--
 
 -- --------------------------------------------------------
 
@@ -155,15 +158,16 @@ CREATE TABLE IF NOT EXISTS `socialmedia` (
   `facebook` text NOT NULL,
   `twitter` text NOT NULL,
   `linkedin` text NOT NULL,
-  `google` text NOT NULL
+  `google` text NOT NULL,
+  `github` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `socialmedia`
 --
 
-INSERT INTO `socialmedia` (`heading`, `facebook`, `twitter`, `linkedin`, `google`) VALUES
-('Follow Me', '', '', '', '');
+INSERT INTO `socialmedia` (`heading`, `facebook`, `twitter`, `linkedin`, `google`, `github`) VALUES
+('Follow Me', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -176,7 +180,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `id`) VALUES
+('admin', 'zaq12wsx', 4);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
