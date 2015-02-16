@@ -150,9 +150,9 @@
                     </div>
 					<?php 
 						if ($rowPages["thumbnail"] != "") {
-						echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' alt=''>";
+						echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
 						} else {
-							echo "<img src='img/portfolio/cake.png' class='img-responsive' alt=''>";
+							echo "<img src='img/portfolio/cake.png' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
 						}
 					?>
                 </a>
@@ -260,31 +260,19 @@
 									if (!empty($rowSocial["facebook"])){
 										echo "<li><a href=".$rowSocial["facebook"]." class='btn-social btn-outline'><i class='fa fa-fw fa-facebook'></i></a></li>";
 									}
-								?>
-                            
-                            
-								<?php
+
 									if (!empty($rowSocial["google"])){
 										echo "<li><a href=".$rowSocial["google"]." class='btn-social btn-outline'><i class='fa fa-fw fa-google-plus'></i></a></li>";
 									}
-								?>
-                            
-                            
-								<?php
+
 									if (!empty($rowSocial["github"])){
 										echo "<li><a href=".$rowSocial["github"]." class='btn-social btn-outline'><i class='fa fa-fw fa-github'></i></a></li>";
 									}
-								?>
-                            
-                            
-								<?php
+
 									if (!empty($rowSocial["twitter"])){
 										echo "<li><a href=".$rowSocial["twitter"]." class='btn-social btn-outline'><i class='fa fa-fw fa-twitter'></i></a></li>";
 									}
-								?>
-                            
-                            
-								<?php
+
 									if (!empty($rowSocial["linkedin"])){
 										echo "<li><a href=".$rowSocial["linkedin"]." class='btn-social btn-outline'><i class='fa fa-fw fa-linkedin'></i></a></li>";
 									}
