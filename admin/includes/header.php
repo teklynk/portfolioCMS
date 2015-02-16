@@ -159,10 +159,8 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 	if (basename($_SERVER['PHP_SELF'])!='index.php') {
 	
 		if (!$_SESSION["user_name"] AND !$_SESSION["user_id"]) {
-		//if (!$_SESSION["user_id"]) {
 			//redirect to login page
-			//header("Location: index.php");
-			//echo "not logged in";
+			//header("Location: index.php");//not working some reason?
 			echo "<script>window.location.href='index.php';</script>";
 		}
 

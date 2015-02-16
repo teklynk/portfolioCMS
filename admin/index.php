@@ -1,6 +1,5 @@
 <?php include 'includes/header.php';?>
 <?php
-session_start();
 unset($_SESSION["user_id"]);
 unset($_SESSION["user_name"]);
 $message="";
@@ -22,6 +21,7 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 	//header("Location: setup.php");
 	echo "<script>window.location.href='setup.php';</script>";
 }
+
 ?>
 <style>
 html, body {
@@ -40,11 +40,15 @@ html, body {
 	margin: 0 auto;
 }
 </style>
+<?php
+//check if dbconn.php is setup/configured
+if ($db_servername > "" AND $db_username > "" AND $db_password > "" AND $db_name > "") {
+?>
 <div class="container">
     <div class="row">
         <form name="frmUser" class="form-signin" method="post" action="">
-		<h2 class="form-signin-heading">Please sign in</h2>
-		<div class="message"><?php if ($message!="") {echo $message;} ?></div>
+					<h2 class="form-signin-heading">Please sign in</h2>
+					<div class="message"><?php if ($message!="") {echo $message;} ?></div>
         	<label for="username" class="sr-only">Username</label>
             <input class="form-control" type="text" name="username" placeholder="Username" required>
             <label for="password" class="sr-only">Password</label>
@@ -54,5 +58,10 @@ html, body {
         <p></p>
     </div>
 </div>
-
-<?php include 'includes/footer.php';?>
+<?php 
+} else {
+	echo "<div class='alert alert-danger' role='alert'>Database connection is not set. Please edit the variables in db/dbconn.php to setup the connection string.</div>";
+	include '../install.txt';
+}
+include 'includes/footer.php';
+?>
