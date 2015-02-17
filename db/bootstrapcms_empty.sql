@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `socialmedia` (
 --
 
 INSERT INTO `socialmedia` (`heading`, `facebook`, `twitter`, `linkedin`, `google`, `github`) VALUES
-('Follow Me', '', '', '', '');
+('Follow Me', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
