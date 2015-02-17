@@ -173,7 +173,7 @@ include 'includes/header.php';
 					</tr>
 				</thead>
 				<tbody>
-                <?php 
+        <?php 
 					$sqlPages = mysql_query("SELECT id, title, thumbnail, active FROM pages ORDER BY title");
 					while ($row  = mysql_fetch_array($sqlPages)) {
 						$pageId=$row['id'];
@@ -181,7 +181,7 @@ include 'includes/header.php';
 						$pageTumbnail=$row['thumbnail'];
 						$pageActive=$row['active'];
 						if ($row['active']==0){
-							$isActive="(Draft)";
+							$isActive="<i style='color:red;'>(Draft)</i>";
 						} else {
 							$isActive="";
 						}
@@ -190,7 +190,7 @@ include 'includes/header.php';
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?editpage=$pageId'\"><i class='fa fa-fw fa-edit'></i> Edit</button></td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?deletepage=$pageId&deletetitle=$pageTitle'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 						<td>
-						<span><i>".$isActive."</i></span>
+						<span>".$isActive."</span>
 						</td>
 						</tr>";
 					}
