@@ -10,10 +10,15 @@ include 'includes/header.php';
 			$uploadMsg = "";
 		}
 		
+		$deleteMsg = "";
 		//Delete file
-		if ($_GET["delete"])  {
+		if ($_GET["delete"] AND !$_GET["confirm"]) {
+			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$_GET["delete"]."? <a href='?delete=".$_GET["delete"]."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='uploads.php'\">×</button></div>";
+			echo $deleteMsg;
+		} elseif ($_GET["delete"] AND $_GET["confirm"]=="yes") {
 			unlink($target_dir.$_GET["delete"]);
-			header("Location: uploads.php");
+			$deleteMsg="<div class='alert alert-success'>".$_GET["delete"]." has been deleted.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='uploads.php'\">×</button></div>";
+			echo $deleteMsg;
 		}
 ?>
 
@@ -51,19 +56,19 @@ include 'includes/header.php';
 					<tbody>
 					<?php
 						if ($handle = opendir($target_dir)) {
+						$count = 0;
 							while (false !== ($file = readdir($handle))) {
 								if ('.' === $file) continue;
 								if ('..' === $file) continue;
 								//exclude these files
 								if ($file==="Thumbs.db") continue;
 								if ($file===".DS_Store") continue;
-
+								$count++;
 								echo "<tr>
 								<td>".$file."</td>
 								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='$target_dir$file'\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
 								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?delete=$target_dir$file'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 								</tr>";
-								
 							}
 							closedir($handle);
 						}
@@ -74,6 +79,8 @@ include 'includes/header.php';
 		</div>
 	</div>
     <!-- /.row -->
+    
+
 <?php
 include 'includes/footer.php';
 ?>

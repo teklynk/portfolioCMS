@@ -124,23 +124,30 @@ include 'includes/header.php';
 <?php
 	} else {
 		$deleteMsg="";
+		$deleteConfirm="";
 		$pageMsg="";
-		if ($_GET["deletepage"]) {
-			$delPageId = $_GET["deletepage"];
-			//delete data on submit
+		$delPageId = $_GET["deletepage"];
+		$delPageTitle = $_GET["deletetitle"];
+		
+		if ($_GET["deletepage"] AND $_GET["deletetitle"] AND !$_GET["confirm"]) {
+			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$delPageTitle."? <a href='?deletepage=".$delPageId."&deletetitle=".$delPageTitle."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
+			echo $deleteMsg;
+		} elseif ($_GET["deletepage"] AND $_GET["deletetitle"] AND $_GET["confirm"]=="yes") {
+			//delete page after clicking Yes
 			$pageDelete = "DELETE FROM pages WHERE id='$delPageId'";
 			mysql_query($pageDelete);
-			$deleteMsg="<div class='alert alert-success'>The page has been deleted.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
+			$deleteMsg="<div class='alert alert-success'>".$delPageTitle." has been deleted.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			echo $deleteMsg;
-		} 
-        //update data on submit
-        if (!empty($_POST["main_heading"])) {
-            $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
-            mysql_query($setupUpdate);
-            $pageMsg="<div class='alert alert-success'>The heading has been updated.<button type='button' class='close' data-dismiss='alert'>×</button></div>";
-        }
+		}
 		
-    	$sqlSetup = mysql_query("SELECT portfolioheading FROM setup");
+    //update data on submit
+    if (!empty($_POST["main_heading"])) {
+        $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
+        mysql_query($setupUpdate);
+        $pageMsg="<div class='alert alert-success'>The portfolio heading has been updated.<button type='button' class='close' data-dismiss='alert'>×</button></div>";
+    }
+		
+    $sqlSetup = mysql_query("SELECT portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
 ?>
 	<button type="button" class="btn btn-default" onclick="window.location='?newpage=true';"><i class='fa fa-fw fa-paper-plane'></i> Create a New Page</button>
@@ -181,7 +188,7 @@ include 'includes/header.php';
 						echo "<tr>
 						<td>".$pageTitle."</td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?editpage=$pageId'\"><i class='fa fa-fw fa-edit'></i> Edit</button></td>
-						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?deletepage=$pageId'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
+						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?deletepage=$pageId&deletetitle=$pageTitle'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 						<td>
 						<span><i>".$isActive."</i></span>
 						</td>
