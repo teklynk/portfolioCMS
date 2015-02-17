@@ -29,8 +29,8 @@
     <![endif]-->
 
   <?php
-  session_start();
-  //DB connection string and Global variable
+	session_start();
+	//DB connection string and Global variable
 	include '../db/dbconn.php'; 
 	
 	$sqlSetup = mysql_query("SELECT tinymce FROM setup");
@@ -50,18 +50,17 @@
 		    resize: "both",
 		    image_list: [ 
 		   	<?php 
-		    		if ($handle = opendir($image_dir)) {
-							while (false !== ($imgfile = readdir($handle))) {
-								if ('.' === $imgfile) continue;
-								if ('..' === $imgfile) continue;
-								if ($imgfile==="Thumbs.db") continue;
-								if ($imgfile===".DS_Store") continue;
+				if ($handle = opendir($image_dir)) {
+					while (false !== ($imgfile = readdir($handle))) {
+						if ('.' === $imgfile) continue;
+						if ('..' === $imgfile) continue;
+						if ($imgfile==="Thumbs.db") continue;
+						if ($imgfile===".DS_Store") continue;
 
-								echo "{title: '".$imgfile."', value: '".$image_url.$imgfile."'},";
-								
-							}
-							closedir($handle);
-						}
+						echo "{title: '".$imgfile."', value: '".$image_url.$imgfile."'},";
+					}
+					closedir($handle);
+				}
 		    ?>
     		],
     		menu: {
@@ -77,7 +76,6 @@
 	}
 	?>
 </head>
-
 <body>
 
     <div id="wrapper">
@@ -103,7 +101,7 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-						    <li class="dropdown">
+				<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  <?php echo $_SESSION["user_name"]?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -157,12 +155,10 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 <?php
 	//Redirect user if session not set
 	if (basename($_SERVER['PHP_SELF'])!='index.php') {
-	
 		if (!$_SESSION["user_name"] AND !$_SESSION["user_id"]) {
 			//redirect to login page
-			//header("Location: index.php");//not working some reason?
-			echo "<script>window.location.href='index.php';</script>";
+			//header("Location: index.php"); //not working for some reason. maybe someone can explain this?
+			echo "<script>window.location.href='index.php';</script>"; //but this works.
 		}
-
 	}
 ?>

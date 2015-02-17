@@ -2,12 +2,11 @@
 include 'includes/header.php';
 
 	//Read/Write from text file
-	$my_file = '../css/custom.css';
-	$handle = fopen($my_file, 'r');
-	$data = fread($handle,filesize($my_file));
+	$handle = fopen($customCss_dir, 'r');
+	$data = fread($handle,filesize($customCss_dir));
 
 	if (!empty($_POST)) {
-		$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+		$handle = fopen($customCss_dir, 'w') or die('Cannot open file:  '.$customCss_dir);
 		$data = $_POST["edit_css"];
 		fwrite($handle, $data);
 		header("Location: editor.php");
@@ -26,7 +25,7 @@ include 'includes/header.php';
 			<form role="editForm" method="post" action="editor.php">
 
 				<div class="form-group">
-					<label>CSS Editor</label>
+					<label><?php echo $customCss_dir; ?></label>
 					<textarea class="form-control" name="edit_css" rows="20"><?php echo $data;?></textarea>
 				</div>
 

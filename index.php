@@ -27,7 +27,11 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
-		<link href="css/custom.css" rel="stylesheet">
+	<?php
+	if ($customCss_url !="") {
+		echo "<link href='".$customCss_url."' rel='stylesheet' type='text/css'>";
+	}
+	?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -192,7 +196,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="sentMessage" id="contactForm" method="post" action="mail/contact_me.php">
+                    <form name="sentMessage" id="contactForm" method="post" action="mail/sendmail.asp">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Name</label>
