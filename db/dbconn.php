@@ -1,9 +1,9 @@
 <?php
 //mysql server setup
-$db_servername = "localhost";
-$db_username = "root";
-$db_password = "zaq12wsx";
-$db_name = "bootstrapcms";
+$db_servername = "";
+$db_username = "";
+$db_password = "";
+$db_name = "";
 
 //Global Vars - Edit values for your web site. leave as is in most cases.
 $image_dir = "../uploads/"; //physical path to uploads folder
