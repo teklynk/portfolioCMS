@@ -66,7 +66,7 @@ include 'includes/header.php';
 								$count++;
 								echo "<tr>
 								<td>".$file."</td>
-								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='$target_dir$file'\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
+								<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$file', '$target_dir$file')\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
 								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?delete=$target_dir$file'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 								</tr>";
 							}
@@ -79,7 +79,29 @@ include 'includes/header.php';
 		</div>
 	</div>
     <!-- /.row -->
-    
+<!--modal preview window-->
+<script type="text/javascript">
+	function showMyModal(myTitle, myFile) {
+	   $('#myModalTitle').html(myTitle);
+	   $('#myModalFile').attr("src", myFile);
+	   $('#myModal').modal('show');
+	}
+</script>
+ <div class="modal fade"  id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalTitle"></h4>
+      </div>
+      <div class="modal-body">
+			<img id="myModalFile" src="" class="img-responsive center-block" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <?php
 include 'includes/footer.php';
