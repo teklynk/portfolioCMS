@@ -148,10 +148,15 @@
             <div class="col-sm-4 portfolio-item">
                 <a href="#portfolioModal<?php echo $rowPages["id"];?>" class="portfolio-link" data-toggle="modal">
                     <div class="caption">
-                        <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
-                        </div>
-                    </div>
+                    	<div class="caption-content">
+												<?php 
+												if ($rowPages["title"] != "") {
+													echo "<div class='portfolio-title'>".$rowPages["title"]."</div>";
+												}
+												?>
+                        <i class="fa fa-search-plus fa-3x"></i>
+                      </div>
+                  </div>
 					<?php 
 						if ($rowPages["thumbnail"] != "") {
 						echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
