@@ -3,12 +3,10 @@ include 'includes/header.php';
 
 if ($_GET["preview"]>""){
 	$pagePreviewId=$_GET["preview"];
-	$sqlPagePreview = mysql_query("SELECT id, title, content FROM pages WHERE id='$pagePreviewId'");
+	$sqlPagePreview = mysql_query("SELECT id, content FROM pages WHERE id='$pagePreviewId'");
 	$row  = mysql_fetch_array($sqlPagePreview);
-		echo "<style>nav {display:none !important;} html, body {margin-top:0px !important;}</style>";
+		echo "<style>html, body {margin-top:0px !important;} nav {display:none !important;} .row {display:none !important;} </style>";
 		echo $row['content'];
-	mysql_close($db_conn);
-	die();
 }
 ?>
    <div class="row">

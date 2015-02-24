@@ -1,20 +1,3 @@
-header, section.success {
-background: url('../uploads/bg_main.png') top center repeat-x; 
-color: #2c3e50;
-}
-header .img-responsive {
-border-radius: 100%;
-}
-hr.star-light, hr.star-primary {
-visibility: hidden;
-}
-hr.star-light:after {
-visibility: hidden;
-}
-#portfolio .portfolio-item .portfolio-link .caption .caption-content {
-top: 35%;
-}
-.caption .caption-content div {
-padding: 8px;
-display: block;
+html, body {
+
 }
