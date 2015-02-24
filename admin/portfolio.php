@@ -1,11 +1,11 @@
 <?php 
 include 'includes/header.php';
-
+//Page preview
 if ($_GET["preview"]>""){
 	$pagePreviewId=$_GET["preview"];
 	$sqlPagePreview = mysql_query("SELECT id, content FROM pages WHERE id='$pagePreviewId'");
 	$row  = mysql_fetch_array($sqlPagePreview);
-		echo "<style>html, body {margin-top:0px !important;} nav {display:none !important;} .row {display:none !important;} </style>";
+		echo "<style type='text/css'>html, body {margin-top:0px !important;} nav {display:none !important;} .row {display:none !important;} #wrapper {padding-left: 0px !important;}</style>";
 		echo $row['content'];
 }
 ?>
@@ -175,7 +175,10 @@ if ($_GET["preview"]>""){
 	height: 600px;
 	frameborder: 0;
 	border: none;
-	}
+}
+.modal-dialog {
+	width:95%;
+}
 </style>
 
 
