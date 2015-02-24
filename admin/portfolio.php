@@ -1,5 +1,15 @@
 <?php 
 include 'includes/header.php';
+
+if ($_GET["preview"]>""){
+	$pagePreviewId=$_GET["preview"];
+	$sqlPagePreview = mysql_query("SELECT id, title, content FROM pages WHERE id='$pagePreviewId'");
+	$row  = mysql_fetch_array($sqlPagePreview);
+		echo "<style>nav {display:none !important;} html, body {margin-top:0px !important;}</style>";
+		echo $row['content'];
+	mysql_close($db_conn);
+	die();
+}
 ?>
    <div class="row">
         <div class="col-lg-12">
@@ -11,6 +21,9 @@ include 'includes/header.php';
 	<div class="row">
 		<div class="col-lg-6">
 <?php
+
+
+					
 	if ($_GET["newpage"] OR $_GET["editpage"]) {
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -140,7 +153,7 @@ include 'includes/header.php';
 			echo $deleteMsg;
 		}
 		
-    //update data on submit
+    //update heading on submit
     if (!empty($_POST["main_heading"])) {
         $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
         mysql_query($setupUpdate);
@@ -150,6 +163,40 @@ include 'includes/header.php';
     $sqlSetup = mysql_query("SELECT portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
 ?>
+<!--modal preview window-->
+<script type="text/javascript">
+	function showMyModal(myTitle, myFile) {
+	   $('#myModalTitle').html(myTitle);
+	   $('#myModalFile').attr("src", myFile);
+	   $('#webpageDialog').modal('show');
+	}
+</script>
+<style>
+#webpageDialog iframe {
+	width: 100%;
+	height: 600px;
+	frameborder: 0;
+	border: none;
+	}
+</style>
+
+
+ <div class="modal fade" id="webpageDialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalTitle"></h4>
+      </div>
+      <div class="modal-body">
+			<iframe id="myModalFile" src="" frameborder="0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 	<button type="button" class="btn btn-default" onclick="window.location='?newpage=true';"><i class='fa fa-fw fa-paper-plane'></i> Create a New Page</button>
 		<h2>Pages</h2>
 		<div class="table-responsive">
@@ -167,6 +214,7 @@ include 'includes/header.php';
 				<thead>
 					<tr>
 						<th>Page Title</th>
+						<th>Preview</th>
 						<th>Edit</th>
 						<th>Delete</th>
             <th>Status</th>
@@ -174,11 +222,13 @@ include 'includes/header.php';
 				</thead>
 				<tbody>
         <?php 
-					$sqlPages = mysql_query("SELECT id, title, thumbnail, active FROM pages ORDER BY title");
+					$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active FROM pages ORDER BY title");
 					while ($row  = mysql_fetch_array($sqlPages)) {
 						$pageId=$row['id'];
 						$pageTitle=$row['title'];
 						$pageTumbnail=$row['thumbnail'];
+						$pageContent=$row['content'];
+						//$pageContent=htmlentities($pageContent);
 						$pageActive=$row['active'];
 						if ($row['active']==0){
 							$isActive="<i style='color:red;'>(Draft)</i>";
@@ -187,6 +237,7 @@ include 'includes/header.php';
 						}
 						echo "<tr>
 						<td>".$pageTitle."</td>
+						<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$pageTitle', '?preview=$pageId')\"><i class='fa fa-fw fa-edit'></i> Preview</button></td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?editpage=$pageId'\"><i class='fa fa-fw fa-edit'></i> Edit</button></td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?deletepage=$pageId&deletetitle=$pageTitle'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 						<td>
