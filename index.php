@@ -120,7 +120,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="uploads/<?php echo $rowLanding["image"];?>" alt="">
+                <?php
+	                if ($rowLanding["image"] != "") {
+	                	echo "<img class='img-responsive' src='uploads/".$rowLanding["image"]."' alt=''>";
+	                } else {
+	                	echo "<img class='img-responsive' src='img/profile.png' alt=''>";
+	                }
+                ?>
                     <div class="intro-text">
                         <span class="name"><?php echo $rowLanding["introtext"];?></span>
                         <hr class="star-light">
@@ -159,7 +165,7 @@
                   </div>
 					<?php 
 						if ($rowPages["thumbnail"] != "") {
-						echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
+							echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
 						} else {
 							echo "<img src='img/portfolio/cake.png' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
 						}
@@ -201,7 +207,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="sentMessage" id="contactForm" method="post" action="mail/contact_me.php">
+                    <form name="sentMessage" id="contactForm" method="post" action="mail/sendmail.asp">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Name</label>
@@ -330,9 +336,10 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
+                        		
                             <h2><?php echo $rowPages["title"];?></h2>
                             <hr class="star-primary">
-							<?php 
+														<?php 
 	                            if ($rowPages["thumbnail"] != "") {
 	                                echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive img-centered' alt=''>";
 	                            } else {
@@ -340,6 +347,7 @@
 	                            }
                             ?>
                             <p><?php echo $rowPages["content"];?></p>
+
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
@@ -347,6 +355,7 @@
             </div>
         </div>
     </div>
+
 <?php 
 	} 
 ?>
