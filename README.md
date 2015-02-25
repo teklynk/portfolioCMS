@@ -15,7 +15,7 @@ Once the tables have been created, select the users table.
 Click the Insert tab and enter a username and password in the value fields and click GO. 
 You can now visit http://www.yourwebsite.com/admin and login. 
 
-Test Environment:
+# Test Environment:
 
 Microsoft-IIS/7.5
 
