@@ -63,13 +63,9 @@
 				}
 		    ?>
     		],
-    		menu: {
-		    edit: { title: 'Edit', items: 'undo redo  | cut copy paste selectall | searchreplace' },
-		    insert: { title: 'Insert', items: 'link image' },
-		    format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript | removeformat' },
-		    table: { title: 'Table', items: 'inserttable tableprops deletetable | cell row column' }
+    		menu: {//insert menu options here
   			},
- 				toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | code',
+ 				toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code"
 			});
 		</script>
 	<?php 
@@ -153,6 +149,7 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
         <div id="page-wrapper">
             <div class="container-fluid">
 <?php
+	
 	//Redirect user if session not set
 	if (basename($_SERVER['PHP_SELF'])!='index.php') {
 		if (!$_SESSION["user_name"] AND !$_SESSION["user_id"]) {
@@ -161,4 +158,5 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 			echo "<script>window.location.href='index.php';</script>"; //but this works.
 		}
 	}
+
 ?>
