@@ -16,9 +16,13 @@ Click the Insert tab and enter a username and password in the value fields and c
 You can now visit http://www.yourwebsite.com/admin and login. 
 
 Test Environment:
+
 Microsoft-IIS/7.5
+
 MySQL 5.6.23
+
 PHP 5.3.28
+
 PHPMyAdmin 3.5.8.1
 
 # Screenshots
