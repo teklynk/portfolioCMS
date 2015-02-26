@@ -25,7 +25,7 @@ PHP 5.3.28
 
 PHPMyAdmin 3.5.8.1
 
-Also tested using TurnkeyLinux LAMP VM. Be sure to set correct permissions.
+Also tested using TurnkeyLinux LAMP Stack http://www.turnkeylinux.org/lampstack. Be sure to set the correct file permissions.
 
 # Screenshots
 ![screenshot02](https://cloud.githubusercontent.com/assets/4500737/6201711/91671f84-b487-11e4-8b32-ff8e3ca482b4.png)
