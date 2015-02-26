@@ -1,26 +1,35 @@
 <?php
-// Check for empty fields
-if(empty($_POST['name'])  		||
-   empty($_POST['email']) 		||
-   empty($_POST['phone']) 		||
-   empty($_POST['message'])	||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-	echo "No arguments Provided!";
-	return false;
-   }
-	
+//redirect back to contact form or home page
+$redirectPage = "../index.php?msgsent=thankyou#contact";
+//if an error occurs
+$errorPage = "../index.php?msgsent=error#contact";
+
 $name = $_POST['name'];
 $email_address = $_POST['email'];
 $phone = $_POST['phone'];
 $message = $_POST['message'];
-	
-// Create the email and send the message
-$to = 'yourname@yourdomain.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
-$email_subject = "Website Contact Form:  $name";
-$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";	
-mail($to,$email_subject,$email_body,$headers);
-return true;			
+$sendTo = $_POST['sendToEmail'];
+
+if (!empty($_POST)) {
+	// Check for empty fields
+	if(empty($_POST['name'])  	||
+	   empty($_POST['email']) 	||
+	   empty($_POST['phone']) 	||
+	   empty($_POST['message'])	||
+	   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) {
+			//header("Location: $errorPage");
+			echo "<script>window.location.href='$errorPage';</script>";
+			return false;
+	} else {
+		// Create the email and send the message
+		$email_subject = "Website Contact Form:  $name";
+		$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
+		$headers = "From: $email_address\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+		$headers .= "Reply-To: $sendTo";
+		mail($sendTo,$email_subject,$email_body,$headers);
+		//header("Location: $redirectPage");
+		echo "<script>window.location.href='$redirectPage';</script>";
+		return true;
+	}
+}
 ?>
