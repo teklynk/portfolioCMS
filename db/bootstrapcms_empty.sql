@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `thumbnail` text NOT NULL,
   `content` text NOT NULL,
   `active` int(11) NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `datetime` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
