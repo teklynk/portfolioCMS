@@ -107,6 +107,7 @@ if ($_GET["preview"]>""){
 							if ('..' === $file) continue;
 							if ($file==="Thumbs.db") continue;
 							if ($file===".DS_Store") continue;
+							if ($file==="index.html") continue;
 							if ($file===$row['thumbnail']){
 								$imageCheck="SELECTED";
 							} else {
