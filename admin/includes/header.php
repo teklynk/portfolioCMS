@@ -56,6 +56,7 @@
 						if ('..' === $imgfile) continue;
 						if ($imgfile==="Thumbs.db") continue;
 						if ($imgfile===".DS_Store") continue;
+						if ($imgfile==="index.html") continue;
 
 						echo "{title: '".$imgfile."', value: '".$image_url.$imgfile."'},";
 					}
