@@ -4,14 +4,9 @@ include 'includes/header.php';
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
-
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			$fileExt = substr(basename( $_FILES["fileToUpload"]["name"]),-4);
-			//if (substr(basename( $_FILES["fileToUpload"]["name"]),-4)!=".png" OR substr(basename( $_FILES["fileToUpload"]["name"]),-4)!=".jpg") {
-			//if (substr(basename( $_FILES["fileToUpload"]["name"])['mime'] == 'image/png') || substr(basename( $_FILES["fileToUpload"]["name"]) == 'image/jpeg'))
 			if ($fileExt==".png" || $fileExt==".jpg" || $fileExt==".gif") {
-				//unlink($target_file);
-				//echo substr(basename( $_FILES["fileToUpload"]["name"]),-4);
 				$uploadMsg = "<div class='alert alert-success' style='margin-top:12px;'>The file ". basename( $_FILES["fileToUpload"]["name"]) . " has been uploaded.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='uploads.php'\">×</button></div>";
 			} else {
 				unlink($target_file);
