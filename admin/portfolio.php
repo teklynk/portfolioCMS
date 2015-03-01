@@ -140,7 +140,9 @@ if ($_GET["preview"]>""){
 		$pageMsg="";
 		$delPageId = $_GET["deletepage"];
 		$delPageTitle = $_GET["deletetitle"];
+		$movePageTitle = $_GET["movetitle"];
 		
+		//delete page
 		if ($_GET["deletepage"] AND $_GET["deletetitle"] AND !$_GET["confirm"]) {
 			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$delPageTitle."? <a href='?deletepage=".$delPageId."&deletetitle=".$delPageTitle."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			echo $deleteMsg;
@@ -152,11 +154,18 @@ if ($_GET["preview"]>""){
 			echo $deleteMsg;
 		}
 		
+		//move pages to top of list
+    if (($_GET["movepage"] AND $_GET["movetitle"])) {
+        $pagesDateUpdate = "UPDATE pages SET datetime='".date("Y-m-d H:i:s")."' WHERE id='".$_GET['movepage']."'";
+        mysql_query($pagesDateUpdate);
+        $pageMsg="<div class='alert alert-success'>".$movePageTitle." has been moved to the top.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
+    }
+		
     //update heading on submit
     if (!empty($_POST["main_heading"])) {
         $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
         mysql_query($setupUpdate);
-        $pageMsg="<div class='alert alert-success'>The portfolio heading has been updated.<button type='button' class='close' data-dismiss='alert'>×</button></div>";
+        $pageMsg="<div class='alert alert-success'>The portfolio heading has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
     }
 		
     $sqlSetup = mysql_query("SELECT portfolioheading FROM setup");
@@ -219,18 +228,18 @@ if ($_GET["preview"]>""){
 						<th>Preview</th>
 						<th>Edit</th>
 						<th>Delete</th>
+						<th>Move</th>
             <th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
         <?php 
-					$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active FROM pages ORDER BY title");
+					$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active FROM pages ORDER BY datetime DESC");
 					while ($row  = mysql_fetch_array($sqlPages)) {
 						$pageId=$row['id'];
 						$pageTitle=$row['title'];
 						$pageTumbnail=$row['thumbnail'];
 						$pageContent=$row['content'];
-						//$pageContent=htmlentities($pageContent);
 						$pageActive=$row['active'];
 						if ($row['active']==0){
 							$isActive="<i style='color:red;'>(Draft)</i>";
@@ -242,6 +251,7 @@ if ($_GET["preview"]>""){
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$pageTitle', '?preview=$pageId')\"><i class='fa fa-fw fa-edit'></i> Preview</button></td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?editpage=$pageId'\"><i class='fa fa-fw fa-edit'></i> Edit</button></td>
 						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?deletepage=$pageId&deletetitle=$pageTitle'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
+						<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?movepage=$pageId&movetitle=$pageTitle'\"><i class='fa fa-fw fa-arrow-up'></i> Move</button></td>
 						<td>
 						<span>".$isActive."</span>
 						</td>
