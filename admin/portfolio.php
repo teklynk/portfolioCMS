@@ -140,6 +140,7 @@ if ($_GET["preview"]>""){
 		$pageMsg="";
 		$delPageId = $_GET["deletepage"];
 		$delPageTitle = $_GET["deletetitle"];
+		$movePageId = $_GET["movepage"];
 		$movePageTitle = $_GET["movetitle"];
 		
 		//delete page
@@ -156,7 +157,7 @@ if ($_GET["preview"]>""){
 		
 		//move pages to top of list
     if (($_GET["movepage"] AND $_GET["movetitle"])) {
-        $pagesDateUpdate = "UPDATE pages SET datetime='".date("Y-m-d H:i:s")."' WHERE id='".$_GET['movepage']."'";
+        $pagesDateUpdate = "UPDATE pages SET datetime='".date("Y-m-d H:i:s")."' WHERE id='$movePageId'";
         mysql_query($pagesDateUpdate);
         $pageMsg="<div class='alert alert-success'>".$movePageTitle." has been moved to the top.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
     }
