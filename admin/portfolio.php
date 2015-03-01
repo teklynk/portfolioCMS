@@ -17,7 +17,7 @@ if ($_GET["preview"]>""){
         </div>
     </div>
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-8">
 <?php
 
 
@@ -40,7 +40,7 @@ if ($_GET["preview"]>""){
 			
 			//update data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."', active=".$_POST["page_status"]." WHERE id='$thePageId'";
+				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
 				mysql_query($pageUpdate);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
@@ -126,7 +126,7 @@ if ($_GET["preview"]>""){
 			<textarea class="form-control tinymce" rows="20" name="page_content"><?php if($_GET["editpage"]){echo $row['content'];} ?></textarea>
 		</div>
         <div class="form-group">
-			<span><?php if($_GET["editpage"]){echo "Created: ".$row['datetime'];} ?></span>
+			<span><?php if($_GET["editpage"]){echo "Updated: ".date('m-d-Y, H:i:s',strtotime($row['datetime']));} ?></span>
 		</div>
 		<button type="submit" class="btn btn-default"><i class='fa fa-fw fa-save'></i> Submit</button>
 		<button type="reset" class="btn btn-default"><i class='fa fa-fw fa-refresh'></i> Reset</button>

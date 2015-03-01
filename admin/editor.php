@@ -6,11 +6,15 @@ include 'includes/header.php';
 	$data = fread($handle,filesize($customCss_dir));
 
 	if (!empty($_POST)) {
-		$handle = fopen($customCss_dir, 'w') or die('Cannot open file:  '.$customCss_dir);
-		$data = $_POST["edit_css"];
-		fwrite($handle, $data);
-		//header("Location: editor.php");
-		$pageMsg="<div class='alert alert-success'>".$customCss_dir." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='editor.php'\">×</button></div>";
+		if (file_exists($customCss_dir)) {
+			$handle = fopen($customCss_dir, 'w') or die('Cannot open file:  '.$customCss_dir);
+			$data = $_POST["edit_css"];
+			fwrite($handle, $data);
+			//header("Location: editor.php");
+			$pageMsg="<div class='alert alert-success'>".$customCss_dir." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='editor.php'\">×</button></div>";
+			
+			closedir($handle);
+		}
 	}
 ?>
 
@@ -21,7 +25,7 @@ include 'includes/header.php';
 			</h1>
 	</div>
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-8">
 		<?php 
 		if ($pageMsg !="") {
 			echo $pageMsg;
@@ -33,7 +37,15 @@ include 'includes/header.php';
 					<label><?php echo $customCss_dir; ?></label>
 					<textarea class="form-control" name="edit_css" rows="20"><?php echo $data;?></textarea>
 				</div>
-
+				<div class="form-group">
+					<span>
+						<?php
+						if (file_exists($customCss_dir)) {
+							echo "Updated: ".date('m-d-Y, H:i:s',filemtime($customCss_dir));
+						}
+						?>
+					</span>
+				</div>
 				<button type="submit" class="btn btn-default"><i class='fa fa-fw fa-save'></i> Submit</button>
 				<button type="reset" class="btn btn-default"><i class='fa fa-fw fa-refresh'></i> Reset</button>
 

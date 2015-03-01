@@ -47,13 +47,14 @@ include 'includes/header.php';
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-8">
 			<h2>Files</h2>
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
 							<th>File Name</th>
+							<th>Date</th>
 							<th>Preview</th>
 							<th>Delete</th>
 						</tr>
@@ -70,8 +71,10 @@ include 'includes/header.php';
 								if ($file===".DS_Store") continue;
 								if ($file==="index.html") continue;
 								$count++;
+								$modDate = date('m-d-Y, H:i:s',filemtime($target_dir.$file));
 								echo "<tr>
 								<td>".$file."</td>
+								<td>".$modDate."</td>
 								<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$file', '$target_dir$file')\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
 								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?delete=$target_dir$file'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 								</tr>";
