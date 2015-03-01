@@ -5,6 +5,10 @@ $db_username = "";
 $db_password = "";
 $db_name = "";
 
+//check if dbconn.php is setup/configured
+if ($db_servername = "" || $db_username = "" || $db_password = "" || $db_name = "") {
+	exit ("<div style='color:#990000; padding:12px; margin:12px; border:solid 1px #990000;'>Database connection is not set. Please edit the variables in db/dbconn.php to setup the connection string.</div>");
+}
 
 //Global Vars - Edit values for your web site. leave as is in most cases.
 $image_dir = "../uploads/"; //physical path to uploads folder

@@ -40,10 +40,7 @@ html, body {
 	margin: 0 auto;
 }
 </style>
-<?php
-//check if dbconn.php is setup/configured
-if ($db_servername > "" AND $db_username > "" AND $db_password > "" AND $db_name > "") {
-?>
+
 <div class="container">
     <div class="row">
         <form name="frmUser" class="form-signin" method="post" action="">
@@ -59,9 +56,5 @@ if ($db_servername > "" AND $db_username > "" AND $db_password > "" AND $db_name
     </div>
 </div>
 <?php 
-} else {
-	echo "<div class='alert alert-danger' role='alert'>Database connection is not set. Please edit the variables in db/dbconn.php to setup the connection string.</div>";
-	include '../install.txt';
-}
 include 'includes/footer.php';
 ?>
