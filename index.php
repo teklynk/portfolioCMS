@@ -265,7 +265,25 @@
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Location</h3>
-                        <p><?php echo $rowContact["address"];?><br><?php echo $rowContact["city"];?>, <?php echo $rowContact["state"];?> <?php echo $rowContact["zipcode"];?><br><?php echo $rowContact["phone"];?><br><?php echo $rowContact["email"];?></p>
+                        <p>
+                        <?php
+                        	if (!empty($rowContact["address"])) {
+                        		echo $rowContact["address"]."<br>";
+                        	}
+	                        if (!empty($rowContact["city"])) {
+	                        	echo $rowContact["city"].", ";
+	                        }
+	                        if (!empty($rowContact["state"])) {
+	                        	echo $rowContact["state"]."<br>";
+	                        }
+	                        if (!empty($rowContact["phone"])) {
+	                        	echo $rowContact["phone"]."<br>";
+	                        }
+	                        if (!empty($rowContact["email"])) {
+	                        	echo $rowContact["email"];
+	                        }
+                        ?>
+                        </p>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3><?php echo $rowSocial["heading"];?></h3>
