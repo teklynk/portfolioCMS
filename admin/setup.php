@@ -6,7 +6,7 @@ include 'includes/header.php';
 	if (!empty($_POST)) {
 		$setupUpdate = "UPDATE setup SET title='".$_POST["site_title"]."', author='".$_POST["site_author"]."', keywords='".$_POST["site_keywords"]."', description='".$_POST["site_description"]."', headercode='".$_POST["site_header"]."', googleanalytics='".$_POST["site_google"]."', tinymce='".$_POST["site_tinymce"]."' ";
 		mysql_query($setupUpdate);
-		$pageMsg="<div class='alert alert-success'>The setup page has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='setup.php'\">×</button></div>";
+		$pageMsg="<div class='alert alert-success'>The setup section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='setup.php'\">×</button></div>";
 	}
 	
 	$sqlSetup = mysql_query("SELECT title, author, description, keywords, headercode, googleanalytics, tinymce FROM setup");

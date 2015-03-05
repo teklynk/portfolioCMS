@@ -6,7 +6,7 @@ include 'includes/header.php';
 	if (!empty($_POST)) {
 		$footerUpdate = "UPDATE footer SET heading='".$_POST["footer_heading"]."', content='".$_POST["footer_content"]."'";
 		mysql_query($footerUpdate);
-		$pageMsg="<div class='alert alert-success'>The footer has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='footer.php'\">×</button></div>";
+		$pageMsg="<div class='alert alert-success'>The footer section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='footer.php'\">×</button></div>";
 	}
 	
 	$sqlFooter= mysql_query("SELECT heading, content FROM footer");

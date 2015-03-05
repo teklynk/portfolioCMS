@@ -164,7 +164,7 @@ if ($_GET["preview"]>""){
     if (!empty($_POST["main_heading"])) {
         $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
         mysql_query($setupUpdate);
-        $pageMsg="<div class='alert alert-success'>The portfolio heading has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
+        $pageMsg="<div class='alert alert-success'>The heading has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
     }
 		
     $sqlSetup = mysql_query("SELECT portfolioheading FROM setup");

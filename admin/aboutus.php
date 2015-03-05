@@ -6,7 +6,7 @@ include 'includes/header.php';
 	if (!empty($_POST)) {
 		$aboutUpdate = "UPDATE aboutus SET heading='".$_POST["about_heading"]."', content='".$_POST["about_content"]."'";
 		mysql_query($aboutUpdate);
-		$pageMsg="<div class='alert alert-success'>The about page has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='aboutus.php'\">×</button></div>";
+		$pageMsg="<div class='alert alert-success'>The about section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='aboutus.php'\">×</button></div>";
 	}
 	
 	$sqlAbout= mysql_query("SELECT heading, content FROM aboutus");

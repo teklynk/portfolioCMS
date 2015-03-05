@@ -5,7 +5,7 @@ include 'includes/header.php';
 	if (!empty($_POST)) {
 		$socialUpdate = "UPDATE socialmedia SET heading='".$_POST["social_heading"]."', facebook='".$_POST["social_facebook"]."', twitter='".$_POST["social_twitter"]."', google='".$_POST["social_google"]."', linkedin='".$_POST["social_linkedin"]."', github='".$_POST["social_github"]."'";
 		mysql_query($socialUpdate);
-		$pageMsg="<div class='alert alert-success'>The social media page has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='socialmedia.php'\">×</button></div>";
+		$pageMsg="<div class='alert alert-success'>The social media section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='socialmedia.php'\">×</button></div>";
 	}
 	
 	$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
