@@ -12,7 +12,7 @@ if ($_GET["preview"]>""){
    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Portfolio
+                <?php echo $rowSetup["portfolioheading"]?>
             </h1>
         </div>
     </div>
@@ -20,8 +20,6 @@ if ($_GET["preview"]>""){
 		<div class="col-lg-8">
 <?php
 
-
-					
 	if ($_GET["newpage"] OR $_GET["editpage"]) {
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -212,7 +210,7 @@ if ($_GET["preview"]>""){
 	<button type="button" class="btn btn-default" onclick="window.location='?newpage=true';"><i class='fa fa-fw fa-paper-plane'></i> Create a New Page</button>
 		<h2>Pages</h2>
 		<div class="table-responsive">
-        <?php 
+    <?php 
 		if ($pageMsg !="") {
 			echo $pageMsg;
 		}

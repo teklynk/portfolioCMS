@@ -34,10 +34,25 @@ include '../db/dbconn.php';
     <![endif]-->
 
   <?php
-	$sqlSetup = mysql_query("SELECT tinymce FROM setup");
-	$row  = mysql_fetch_array($sqlSetup);
+	$sqlSetup = mysql_query("SELECT tinymce, portfolioheading FROM setup");
+	$rowSetup  = mysql_fetch_array($sqlSetup);
+	
+	$sqlLanding = mysql_query("SELECT heading FROM landing");
+	$rowLanding  = mysql_fetch_array($sqlLanding);
+	
+	$sqlAbout = mysql_query("SELECT heading FROM aboutus");
+	$rowAbout  = mysql_fetch_array($sqlAbout);
 
-	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $row["tinymce"]==1) {
+	$sqlContact = mysql_query("SELECT heading FROM contactus");
+	$rowContact  = mysql_fetch_array($sqlContact);
+	
+	$sqlFooter = mysql_query("SELECT heading FROM footer");
+	$rowFooter  = mysql_fetch_array($sqlFooter);
+	
+	$sqlSocial = mysql_query("SELECT heading FROM socialmedia");
+	$rowSocial  = mysql_fetch_array($sqlSocial);
+	
+	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
 	?>
 		<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 		<script type="text/javascript">
@@ -118,22 +133,22 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
                         <a href="setup.php"><i class="fa fa-fw fa-gear"></i> Setup</a>
                     </li>
                     <li>
-                        <a href="landing.php"><i class="fa fa-fw fa-rocket"></i> Landing Page</a>
+                        <a href="landing.php"><i class="fa fa-fw fa-rocket"></i> <?php echo $rowLanding["heading"]?></a>
                     </li>
                     <li>
-                        <a href="portfolio.php"><i class="fa fa-fw fa-table"></i> Portfolio</a>
+                        <a href="portfolio.php"><i class="fa fa-fw fa-table"></i> <?php echo $rowSetup["portfolioheading"]?></a>
                     </li>
                     <li>
-                        <a href="aboutus.php"><i class="fa fa-fw fa-edit"></i> About</a>
+                        <a href="aboutus.php"><i class="fa fa-fw fa-edit"></i> <?php echo $rowAbout["heading"]?></a>
                     </li>
                     <li>
-                        <a href="contactus.php"><i class="fa fa-fw fa-edit"></i> Contact</a>
+                        <a href="contactus.php"><i class="fa fa-fw fa-edit"></i> <?php echo $rowContact["heading"]?></a>
                     </li>
                     <li>
-                        <a href="footer.php"><i class="fa fa-fw fa-edit"></i> Footer</a>
+                        <a href="footer.php"><i class="fa fa-fw fa-edit"></i> <?php echo $rowFooter["heading"]?></a>
                     </li>
                     <li>
-                        <a href="socialmedia.php"><i class="fa fa-fw fa-facebook-square"></i> Social Media</a>
+                        <a href="socialmedia.php"><i class="fa fa-fw fa-facebook-square"></i> <?php echo $rowSocial["heading"]?></a>
                     </li>
                     <li>
                         <a href="uploads.php"><i class="fa fa-fw fa-folder"></i> Uploads</a>
