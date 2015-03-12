@@ -388,9 +388,6 @@
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
 

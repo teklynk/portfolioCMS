@@ -20,11 +20,9 @@ include '../db/dbconn.php';
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,11 +56,8 @@ include '../db/dbconn.php';
 		<script type="text/javascript">
 			tinymce.init({
 				selector: "textarea.tinymce",
-		    plugins: "link image code",
-		    //relative_urls: false,
-		    //remove_script_host: true,
+		    plugins: "link image table code",
 		    document_base_url: '$image_url',
-		    //convert_urls: true,
 		    resize: "both",
 		    image_list: [ 
 		   	<?php 
@@ -82,7 +77,7 @@ include '../db/dbconn.php';
     		],
     		menu: {//insert menu options here
   			},
- 				toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code"
+ 				toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | code"
 			});
 		</script>
 	<?php 
