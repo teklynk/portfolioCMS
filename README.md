@@ -25,7 +25,7 @@ PHP 5.3.28
 
 PHPMyAdmin 3.5.8.1
 
-Also tested using TurnkeyLinux LAMP Stack http://www.turnkeylinux.org/lampstack.
+Tested using TurnkeyLinux LAMP Stack http://www.turnkeylinux.org/lampstack.
 Be sure to set the correct file permissions.
 
 Apache/2.2.22 (Debian)
@@ -33,6 +33,15 @@ Apache/2.2.22 (Debian)
 MySQL 5.5.41
 
 PHP 5.4.4
+
+Tested using TurnkeyLinux Nginx PHP FastCGI Server Configuration http://www.turnkeylinux.org/nginx-php-fastcgi.
+Be sure to set the correct file permissions.
+
+nginx	0.7.67-3+squeeze2
+
+mysql-server	5.1.63-0+squeeze1
+
+phpmyadmin	4:3.3.7-7
 
 # Screenshots
 ![screenshot02](https://cloud.githubusercontent.com/assets/4500737/6201711/91671f84-b487-11e4-8b32-ff8e3ca482b4.png)
