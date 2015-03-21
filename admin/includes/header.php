@@ -165,10 +165,10 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 	//Redirect user if session not set
 	if (basename($_SERVER['PHP_SELF'])!='index.php') {
 		if (!$_SESSION["user_name"] AND !$_SESSION["user_id"]) {
-			//redirect to login page
-			//header("Location: index.php"); //not working for some reason. maybe someone can explain this?
-			echo "<script>window.location.href='index.php';</script>"; //but this works.
+			//redirect to login page if not installing
+			if (basename($_SERVER['PHP_SELF'])!='install.php') {
+				echo "<script>window.location.href='index.php';</script>"; //but this works.
+			}
 		}
 	}
-
 ?>

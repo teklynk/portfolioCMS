@@ -6,7 +6,7 @@ $message="";
 
 if (!empty($_POST)) {
 
-	$result = mysql_query("SELECT username, password, id FROM users WHERE username='" . $_POST["username"] . "' AND password = '". $_POST["password"]."'");
+  $result = mysql_query("SELECT username, password, id FROM users WHERE username='".$_POST["username"]."' AND password=password('$_POST[password]')");
 	$row  = mysql_fetch_array($result);
 
 	if (is_array($row)) {
