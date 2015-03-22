@@ -3,7 +3,7 @@
 <head>
 	<?php
 		include 'db/dbsetup.php'; //contains DB connection string and global variables
-		
+
 		$sqlSetup = mysql_query("SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
 	?>
@@ -207,7 +207,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="sentMessage" id="contactForm" method="post" action="mail/contact_me.php">
+                    <form name="sentMessage" id="contactForm" method="post" action="mail/sendmail.asp">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Name</label>
@@ -257,7 +257,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
@@ -386,7 +385,7 @@
     <!-- Plugin JavaScript -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
-    <script src="js/cbpanimatedheader.min.js"></script>
+    <script src="js/cbpanimatedheader.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
