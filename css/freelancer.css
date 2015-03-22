@@ -36,6 +36,12 @@ h6 {
     font-weight: 700;
 }
 
+.container img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
 hr.star-light,
 hr.star-primary {
     margin: 25px auto 30px;
@@ -448,3 +454,4 @@ footer .footer-below {
     display: none;
     opacity: 0;
 }
+

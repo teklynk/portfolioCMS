@@ -57,6 +57,7 @@ include '../db/dbsetup.php';
 			tinymce.init({
 				selector: "textarea.tinymce",
 		    plugins: "link image table code",
+		    image_dimensions: false,
 		    document_base_url: '$image_url',
 		    resize: "both",
 		    image_list: [ 
