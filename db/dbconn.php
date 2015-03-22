@@ -1,0 +1,3 @@
+<?php
+//mysql server setup
+?>
