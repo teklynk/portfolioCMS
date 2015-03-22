@@ -4,7 +4,7 @@
 <?php
 session_start();
 //DB connection string and Global variable
-include '../db/dbconn.php'; 
+include '../db/dbsetup.php'; 
 ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<?php
-		include 'db/dbconn.php'; //contains DB connection string and global variables
+		include 'db/dbsetup.php'; //contains DB connection string and global variables
 		
 		$sqlSetup = mysql_query("SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
