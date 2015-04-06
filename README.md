@@ -44,5 +44,9 @@ mysql-server	5.1.63-0+squeeze1
 phpmyadmin	4:3.3.7-7
 
 # Screenshots
-![screenshot02](https://cloud.githubusercontent.com/assets/4500737/6201711/91671f84-b487-11e4-8b32-ff8e3ca482b4.png)
-![screenshot01](https://cloud.githubusercontent.com/assets/4500737/6201712/91681d94-b487-11e4-872e-0259535cdb21.png)
+![screenshot02](https://github.com/teklynk/portfolioCMS/blob/master/screenshot01.png)
+![screenshot01](https://github.com/teklynk/portfolioCMS/blob/master/screenshot02.png)
+![screenshot03](https://github.com/teklynk/portfolioCMS/blob/master/screenshot03.png)
+![screenshot04](https://github.com/teklynk/portfolioCMS/blob/master/screenshot04.png)
+![screenshot05](https://github.com/teklynk/portfolioCMS/blob/master/screenshot05.png)
+![screenshot06](https://github.com/teklynk/portfolioCMS/blob/master/screenshot06.png)
