@@ -48,5 +48,5 @@ phpmyadmin	4:3.3.7-7
 ![screenshot01](https://github.com/teklynk/portfolioCMS/blob/master/screenshot01.png)
 ![screenshot03](https://github.com/teklynk/portfolioCMS/blob/master/screenshot03.png)
 ![screenshot04](https://github.com/teklynk/portfolioCMS/blob/master/screenshot04.png)
-![screenshot05](https://github.com/teklynk/portfolioCMS/blob/master/screenshot05.png)
+![screenshot05](https://github.com/teklynk/portfolioCMS/blob/master/screenshot05a.png)
 ![screenshot06](https://github.com/teklynk/portfolioCMS/blob/master/screenshot06.png)
