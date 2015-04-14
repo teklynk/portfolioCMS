@@ -385,7 +385,7 @@
     <!-- Plugin JavaScript -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
-    <script src="js/cbpanimatedheader.js"></script>
+    <script src="js/cbpanimatedheader.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
