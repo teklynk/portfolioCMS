@@ -319,7 +319,7 @@
                     </div>
                     <div class="footer-col col-md-4">
                         <h3><?php echo $rowFooter["heading"];?></h3>
-                        <p><?php echo $rowFooter["content"];?></p>
+                        <?php echo $rowFooter["content"];?>
                     </div>
                 </div>
             </div>
@@ -367,7 +367,7 @@
 	                                echo "<img src='img/portfolio/cake.png' class='img-responsive' alt=''>";
 	                            }
                             ?>
-                            <p><?php echo $rowPagesActive["content"];?></p>
+                            <?php echo $rowPagesActive["content"];?>
 
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
