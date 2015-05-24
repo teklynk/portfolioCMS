@@ -3,9 +3,29 @@
 <head>
 	<?php
 		include 'db/dbsetup.php'; //contains DB connection string and global variables
-
+		
+		//SQL Select Stements
 		$sqlSetup = mysql_query("SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
+		
+		$sqlLanding = mysql_query("SELECT heading, introtext, skills, image FROM landing");
+		$rowLanding = mysql_fetch_array($sqlLanding);
+		
+		$sqlAbout = mysql_query("SELECT heading, content FROM aboutus");
+		$rowAbout = mysql_fetch_array($sqlAbout);
+		
+		$sqlFooter = mysql_query("SELECT heading, content FROM footer");
+		$rowFooter = mysql_fetch_array($sqlFooter);
+		
+		$sqlContact = mysql_query("SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
+		$rowContact = mysql_fetch_array($sqlContact);
+		
+		$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
+		$rowSocial = mysql_fetch_array($sqlSocial);
+		
+		$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE active=1 ORDER BY datetime DESC"); //uses while loop
+		
+		$sqlPagesActive = mysql_query("SELECT id, title, thumbnail, content, active FROM pages WHERE active=1"); //uses while loop
 	?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,23 +46,25 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- Custom CSS -->
-	<?php
-	if ($customCss_url !="") {
-		echo "<link href='".$customCss_url."' rel='stylesheet' type='text/css'>";
-	}
-	?>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 	<?php
-	echo $rowSetup["headercode"]."\n";
-
-	if ($rowSetup["googleanalytics"]) {
-		$googleID = $rowSetup["googleanalytics"];
+		//Custom CSS
+		if ($customCss_url !="") {
+			echo "<link href='".$customCss_url."' rel='stylesheet' type='text/css'>";
+		}
+		//Custom header code
+		echo $rowSetup["headercode"]."\n";
+		
+		//Google Analytics tracking code
+		if ($rowSetup["googleanalytics"]) {
+			$googleID = $rowSetup["googleanalytics"];
 	?>
 		<script type="text/javascript">
 			
@@ -63,22 +85,6 @@
 </head>
 
 <body id="page-top" class="index">
-	<?php 
-		$sqlLanding = mysql_query("SELECT heading, introtext, skills, image FROM landing");
-		$rowLanding = mysql_fetch_array($sqlLanding);
-		
-		$sqlAbout = mysql_query("SELECT heading, content FROM aboutus");
-		$rowAbout = mysql_fetch_array($sqlAbout);
-		
-		$sqlFooter = mysql_query("SELECT heading, content FROM footer");
-		$rowFooter = mysql_fetch_array($sqlFooter);
-		
-		$sqlContact = mysql_query("SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
-		$rowContact = mysql_fetch_array($sqlContact);
-		
-		$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
-		$rowSocial = mysql_fetch_array($sqlSocial);
-	?>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -148,18 +154,17 @@
             </div>
             <div class="row">
 			<?php
-				$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE active=1 ORDER BY datetime DESC");
 				while ($rowPages  = mysql_fetch_array($sqlPages)) {
 			?>
             <div class="col-sm-4 portfolio-item">
                 <a href="#portfolioModal<?php echo $rowPages["id"];?>" class="portfolio-link" data-toggle="modal">
                     <div class="caption">
                     	<div class="caption-content">
-												<?php 
-												if ($rowPages["title"] != "") {
-													echo "<div class='portfolio-title'>".$rowPages["title"]."</div>";
-												}
-												?>
+							<?php 
+                            if ($rowPages["title"] != "") {
+                                echo "<div class='portfolio-title'>".$rowPages["title"]."</div>";
+                            }
+                            ?>
                         <i class="fa fa-search-plus fa-3x"></i>
                       </div>
                   </div>
@@ -172,7 +177,7 @@
 					?>
                 </a>
             </div>
-      <?php 
+      		<?php 
 				} 
 			?>
             </div>
@@ -337,11 +342,10 @@
         </a>
     </div>
 <?php
-	$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active FROM pages WHERE active=1");
-	while ($rowPages  = mysql_fetch_array($sqlPages)) {
+	while ($rowPagesActive  = mysql_fetch_array($sqlPagesActive)) {
 ?>
     <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal<?php echo $rowPages["id"];?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade" id="portfolioModal<?php echo $rowPagesActive["id"];?>" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -354,16 +358,16 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
                         		
-                            <h2><?php echo $rowPages["title"];?></h2>
+                            <h2><?php echo $rowPagesActive["title"];?></h2>
                             <hr class="star-primary">
-														<?php 
-	                            if ($rowPages["thumbnail"] != "") {
-	                                echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive img-centered' alt=''>";
+							<?php 
+	                            if ($rowPagesActive["thumbnail"] != "") {
+	                                echo "<img src='uploads/".$rowPagesActive["thumbnail"]."' class='img-responsive img-centered' alt=''>";
 	                            } else {
 	                                echo "<img src='img/portfolio/cake.png' class='img-responsive' alt=''>";
 	                            }
                             ?>
-                            <p><?php echo $rowPages["content"];?></p>
+                            <p><?php echo $rowPagesActive["content"];?></p>
 
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
