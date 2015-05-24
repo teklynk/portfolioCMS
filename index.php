@@ -4,7 +4,7 @@
 	<?php
 		include 'db/dbsetup.php'; //contains DB connection string and global variables
 		
-		//SQL Select Stements
+		//SQL Select Statements
 		$sqlSetup = mysql_query("SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
 		
