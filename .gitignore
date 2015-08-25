@@ -1,2 +1,10 @@
+db/
+uploads/
+mail/
+.idea/encodings.xml
 
-js/jqBootstrapValidation.js
+.idea/workspace.xml
+
+*.xml
+
+.idea/portfolioCMS.iml
