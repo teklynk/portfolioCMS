@@ -6,6 +6,7 @@ session_start();
 //DB connection string and Global variable
 include '../db/dbsetup.php'; 
 ?>
+    <meta http-equiv="refresh" content="3600; url=../index.php" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -161,15 +162,3 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 ?>
         <div id="page-wrapper">
             <div class="container-fluid">
-<?php
-	
-	//Redirect user if session not set
-	if (basename($_SERVER['PHP_SELF'])!='index.php') {
-		if (!$_SESSION["user_name"] AND !$_SESSION["user_id"]) {
-			//redirect to login page if not installing
-			if (basename($_SERVER['PHP_SELF'])!='install.php') {
-				echo "<script>window.location.href='index.php';</script>"; //but this works.
-			}
-		}
-	}
-?>
