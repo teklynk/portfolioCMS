@@ -3,7 +3,7 @@ Bootstrap portfolio web site with admin panel. PHP, MySQL. Simple setup.
 Uses Bootstrap Freelancer Theme for the front end. http://startbootstrap.com/template-overviews/freelancer/
 Admin panel was built using SB Admin theme http://startbootstrap.com/template-overviews/sb-admin/
 
-In general, the code and database is really simple. Implementing the site on your own host/server is also simple. 
+In general, the code and database is really simple. Implementing the site on your own host/server is also simple.
 
 Enjoy!
 
@@ -14,6 +14,8 @@ Enter in your database connection settings.
 Create an Admin user.
 Log in.
 That's it!
+
+Depending on your environment, you may need to edit variables in db/dbsetup.php.
 
 # Test Environments
 
