@@ -1,6 +1,10 @@
-db/
+db/dbconn.php
 uploads/
-mail/
 .idea
+.DS_Store
+.vagrant
+.htaccess
 *.xml
 *.old
+*.sql
+*.asp
