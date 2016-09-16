@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'includes/header.php';
 //Page preview
 if ($_GET["preview"]>""){
@@ -24,28 +24,28 @@ if ($_GET["preview"]>""){
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$pageMsg="";
-		
+
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			$uploadMsg = "<div class='alert alert-success'>The file ". basename( $_FILES["fileToUpload"]["name"]) ." has been uploaded.<button type='button' class='close' data-dismiss='alert'>×</button></div>";
 		} else {
 			$uploadMsg = "";
 		}
-		
+
 		//Update existing page
 		if ($_GET["editpage"]) {
 			$thePageId = $_GET["editpage"];
 			$pageLabel = "Edit Page Title";
-			
+
 			//update data on submit
 			if (!empty($_POST["page_title"])) {
 				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
 				mysql_query($pageUpdate);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
-			
+
 			$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE id='$thePageId'");
 			$row  = mysql_fetch_array($sqlPages);
-			
+
 		//Create new page
 		} else if ($_GET["newpage"]) {
 			$pageLabel = "New Page Title";
@@ -55,20 +55,20 @@ if ($_GET["preview"]>""){
 				mysql_query($pageInsert);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been added.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
-		} 
-        
+		}
+
 
 		//alert messages
 		if ($uploadMsg !="") {
 			echo $uploadMsg;
 		}
-		
+
 		if ($pageMsg !="") {
 			echo $pageMsg;
 		}
-		
-		if ($_GET["editpage"]){ 
-			//active status		
+
+		if ($_GET["editpage"]){
+			//active status
 			if ($row['active']==1) {
 				$selActive1="SELECTED";
 				$selActive0="";
@@ -140,7 +140,7 @@ if ($_GET["preview"]>""){
 		$delPageTitle = $_GET["deletetitle"];
 		$movePageId = $_GET["movepage"];
 		$movePageTitle = $_GET["movetitle"];
-		
+
 		//delete page
 		if ($_GET["deletepage"] AND $_GET["deletetitle"] AND !$_GET["confirm"]) {
 			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$delPageTitle."? <a href='?deletepage=".$delPageId."&deletetitle=".$delPageTitle."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
@@ -152,21 +152,21 @@ if ($_GET["preview"]>""){
 			$deleteMsg="<div class='alert alert-success'>".$delPageTitle." has been deleted.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			echo $deleteMsg;
 		}
-		
+
 		//move pages to top of list
     if (($_GET["movepage"] AND $_GET["movetitle"])) {
         $pagesDateUpdate = "UPDATE pages SET datetime='".date("Y-m-d H:i:s")."' WHERE id='$movePageId'";
         mysql_query($pagesDateUpdate);
         $pageMsg="<div class='alert alert-success'>".$movePageTitle." has been moved to the top.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
     }
-		
+
     //update heading on submit
     if (!empty($_POST["main_heading"])) {
         $setupUpdate = "UPDATE setup SET portfolioheading='".$_POST["main_heading"]."'";
         mysql_query($setupUpdate);
         $pageMsg="<div class='alert alert-success'>The heading has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
     }
-		
+
     $sqlSetup = mysql_query("SELECT portfolioheading FROM setup");
 		$rowSetup  = mysql_fetch_array($sqlSetup);
 ?>
@@ -210,7 +210,7 @@ if ($_GET["preview"]>""){
 	<button type="button" class="btn btn-default" onclick="window.location='?newpage=true';"><i class='fa fa-fw fa-paper-plane'></i> Create a New Page</button>
 		<h2>Pages</h2>
 		<div class="table-responsive">
-    <?php 
+    <?php
 		if ($pageMsg !="") {
 			echo $pageMsg;
 		}
@@ -232,7 +232,7 @@ if ($_GET["preview"]>""){
 					</tr>
 				</thead>
 				<tbody>
-        <?php 
+        <?php
 					$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active FROM pages ORDER BY datetime DESC");
 					while ($row  = mysql_fetch_array($sqlPages)) {
 						$pageId=$row['id'];

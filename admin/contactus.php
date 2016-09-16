@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'includes/header.php';
 
 	$pageMsg="";
@@ -8,7 +8,7 @@ include 'includes/header.php';
 		mysql_query($contactUpdate);
 		$pageMsg="<div class='alert alert-success'>The contact section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='contactus.php'\">×</button></div>";
 	}
-	
+
 	$sqlContact = mysql_query("SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
 	$row  = mysql_fetch_array($sqlContact);
 ?>
@@ -22,12 +22,12 @@ include 'includes/header.php';
 	</div>
 	 <div class="row">
 		<div class="col-lg-8">
-		<?php 
+		<?php
 		if ($pageMsg !="") {
 			echo $pageMsg;
 		}
 		?>
-			<form role="contactForm" method="post" action="">
+			<form role="contactForm" method="post" action="contact_me.php">
 
 				<div class="form-group">
 					<label>Heading</label>
@@ -70,6 +70,6 @@ include 'includes/header.php';
 		</div>
 	</div>
 
-<?php 
+<?php
 include 'includes/footer.php';
 ?>
