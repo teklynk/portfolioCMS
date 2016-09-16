@@ -1,10 +1,6 @@
 db/
 uploads/
 mail/
-.idea/encodings.xml
-
-.idea/workspace.xml
-
+.idea
 *.xml
-
-.idea/portfolioCMS.iml
+*.old
