@@ -15,7 +15,7 @@ Create an Admin user.
 Log in.
 That's it!
 
-* Be sure to set permissions on file to 777 BEFORE running the installer (install.php)
+* Be sure to set permissions of the files to 777 BEFORE running the installer (install.php)
 * Depending on your environment, you may need to edit variables in db/dbsetup.php.
 
 # Test Environments
