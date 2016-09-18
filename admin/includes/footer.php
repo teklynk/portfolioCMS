@@ -5,7 +5,7 @@
 
         </div>
         <!-- /#page-wrapper -->
-
+		<div class="version text-right"><small><a target="_blank" href="https://github.com/teklynk/portfolioCMS">Github</a></small></div>
     </div>
     <!-- /#wrapper -->
 

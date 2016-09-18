@@ -223,3 +223,14 @@ ul.alert-dropdown {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+/* Custom Styles */
+.version {
+    padding: 6px 12px;
+}
+.version>small {
+    color:#999;
+}
+
+.td_small {
+    width:100px;
+}
