@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <?php
 session_start();
 //DB connection string and Global variable
-include '../db/dbsetup.php'; 
+include '../db/dbsetup.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta http-equiv="refresh" content="3600; url=../index.php" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@ include '../db/dbsetup.php';
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,22 +35,22 @@ include '../db/dbsetup.php';
   <?php
 	$sqlSetup = mysql_query("SELECT tinymce, portfolioheading FROM setup");
 	$rowSetup  = mysql_fetch_array($sqlSetup);
-	
+
 	$sqlLanding = mysql_query("SELECT heading FROM landing");
 	$rowLanding  = mysql_fetch_array($sqlLanding);
-	
+
 	$sqlAbout = mysql_query("SELECT heading FROM aboutus");
 	$rowAbout  = mysql_fetch_array($sqlAbout);
 
 	$sqlContact = mysql_query("SELECT heading FROM contactus");
 	$rowContact  = mysql_fetch_array($sqlContact);
-	
+
 	$sqlFooter = mysql_query("SELECT heading FROM footer");
 	$rowFooter  = mysql_fetch_array($sqlFooter);
-	
+
 	$sqlSocial = mysql_query("SELECT heading FROM socialmedia");
 	$rowSocial  = mysql_fetch_array($sqlSocial);
-	
+
 	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
 	?>
 		<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
@@ -61,8 +61,8 @@ include '../db/dbsetup.php';
 		    image_dimensions: false,
 		    document_base_url: '$image_url',
 		    resize: "both",
-		    image_list: [ 
-		   	<?php 
+		    image_list: [
+		   	<?php
 				if ($handle = opendir($image_dir)) {
 					while (false !== ($imgfile = readdir($handle))) {
 						if ('.' === $imgfile) continue;
@@ -82,7 +82,7 @@ include '../db/dbsetup.php';
  				toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | code"
 			});
 		</script>
-	<?php 
+	<?php
 	}
 	?>
 </head>
@@ -90,11 +90,6 @@ include '../db/dbsetup.php';
 
     <div id="wrapper">
 <?php
-if ($_GET["debug"]) {
-	error_reporting(E_ALL | E_WARNING | E_NOTICE);
-	ini_set('display_errors', TRUE);
-}
-
 if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
 ?>
         <!-- Navigation -->
@@ -158,7 +153,7 @@ if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
             <!-- /.navbar-collapse -->
         </nav>
 <?php
-} 
+}
 ?>
         <div id="page-wrapper">
             <div class="container-fluid">
