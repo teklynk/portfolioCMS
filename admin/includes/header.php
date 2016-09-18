@@ -53,12 +53,14 @@ include '../db/dbsetup.php';
 
 	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
 	?>
-		<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+	  <script type="text/javascript" language="javascript"  src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 		<script type="text/javascript">
 			tinymce.init({
 				selector: "textarea.tinymce",
+        theme: 'modern',
 		    plugins: "link image table code",
 		    image_dimensions: false,
+        object_resizing: false,
 		    document_base_url: '$image_url',
 		    resize: "both",
 		    image_list: [
@@ -79,7 +81,7 @@ include '../db/dbsetup.php';
     		],
     		menu: {//insert menu options here
   			},
- 				toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | code"
+ 				toolbar: 'insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image table | code'
 			});
 		</script>
 	<?php
