@@ -1,4 +1,5 @@
 db/dbconn.php
+db/dbsetup.php
 uploads/
 .idea
 .DS_Store
