@@ -1,4 +1,7 @@
 <?php
+if(!defined('inc_access')) {
+   die('Direct access not permitted');
+}
 session_start();
 //DB connection string and Global variable
 include '../db/dbsetup.php';

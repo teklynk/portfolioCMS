@@ -1,6 +1,7 @@
 <?php
+define('inc_access', TRUE);
 include 'includes/header.php';
-		
+
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
@@ -15,7 +16,7 @@ include 'includes/header.php';
 		} else {
 			$uploadMsg = "";
 		}
-		
+
 		$deleteMsg = "";
 		//Delete file
 		if ($_GET["delete"] AND !$_GET["confirm"]) {

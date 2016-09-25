@@ -1,10 +1,11 @@
-<?php 
+<?php
+define('inc_access', TRUE);
 include 'includes/header.php';
 
 	//Upload function
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$pageMsg="";
-	
+
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 		$uploadMsg = "<div class='alert alert-success'>The file ". basename( $_FILES["fileToUpload"]["name"]) ." has been uploaded.<button type='button' class='close' data-dismiss='alert'>×</button></div>";
 	} else {
@@ -16,7 +17,7 @@ include 'includes/header.php';
 		mysql_query($landingUpdate);
 		$pageMsg="<div class='alert alert-success'>The landing section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='landing.php'\">×</button></div>";
 	}
-	
+
 	$sqlLanding = mysql_query("SELECT heading, introtext, skills, image FROM landing");
 	$row  = mysql_fetch_array($sqlLanding);
 ?>
@@ -30,7 +31,7 @@ include 'includes/header.php';
 	</div>
 	 <div class="row">
 		<div class="col-lg-8">
-		<?php 
+		<?php
 		if ($uploadMsg !="") {
 			echo $uploadMsg;
 		}
@@ -88,6 +89,6 @@ include 'includes/header.php';
 		</div>
 	</div>
 
-<?php 
+<?php
 include 'includes/footer.php';
 ?>

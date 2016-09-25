@@ -1,4 +1,5 @@
-<?php 
+<?php
+define('inc_access', TRUE);
 include 'includes/header.php';
 	$pageMsg="";
 	//update table on submit
@@ -7,7 +8,7 @@ include 'includes/header.php';
 		mysql_query($socialUpdate);
 		$pageMsg="<div class='alert alert-success'>The social media section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='socialmedia.php'\">×</button></div>";
 	}
-	
+
 	$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
 	$row  = mysql_fetch_array($sqlSocial);
 ?>
@@ -20,7 +21,7 @@ include 'includes/header.php';
 	</div>
 	 <div class="row">
 		<div class="col-lg-8">
-		<?php 
+		<?php
 		if ($pageMsg !="") {
 			echo $pageMsg;
 		}

@@ -1,4 +1,5 @@
 <?php
+define('inc_access', TRUE);
 include 'includes/header.php';
 
 unset($_SESSION["user_id"]);
@@ -22,23 +23,23 @@ if (!file_exists($dbFileLoc)) {
 		$mysql_password = $_POST["dbpassword"];
 		// Database name
 		$mysql_database = $_POST["dbname"];
-		
+
 		// Connect to MySQL server
 		mysql_connect($mysql_host, $mysql_username, $mysql_password) or die('Error connecting to MySQL server: ' . mysql_error());
 		// Select database
 		mysql_select_db($mysql_database) or die('Error selecting MySQL database: ' . mysql_error());
-		
+
 		// Temporary variable, used to store current query
 		$templine = '';
 		// Read in entire file
 		$lines = file($filename);
-	
+
 		// Loop through each line
 		foreach ($lines as $line) {
 			// Skip it if it's a comment
 			if (substr($line, 0, 2) == '--' || $line == '')
 		    continue;
-		
+
 			// Add this line to the current segment
 			$templine .= $line;
 			// If it has a semicolon at the end, it's the end of the query
@@ -49,10 +50,10 @@ if (!file_exists($dbFileLoc)) {
 			    $templine = '';
 			}
 		}
-		
+
 		$userInsert = "INSERT INTO users (username, password) VALUES ('".$_POST["username"]."', password('$_POST[password]'))";
 		mysql_query($userInsert);
-		
+
 		//TODO: write connection info to dbconn.php. include dbconn.php in dbsetup.php which contains global variables. use dbsetup.php in the header instead of dbconn.php.
         $dbfile = fopen($dbFileLoc, "w") or die("Unable to open file!");
 
@@ -111,11 +112,11 @@ if (!file_exists($dbFileLoc)) {
             <input class="form-control" type="text" name="username" placeholder="Username" required>
             <label for="password" class="sr-only">Password</label>
             <input class="form-control" type="text" name="password" placeholder="Password" required>
-            
+
             <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
         </form>
     </div>
 </div>
-<?php 
+<?php
     include 'includes/footer.php';
 ?>
