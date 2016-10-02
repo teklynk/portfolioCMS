@@ -56,7 +56,7 @@ include '../db/dbsetup.php';
 
 	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
 	?>
-	  <script type="text/javascript" language="javascript"  src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	  <script type="text/javascript" language="javascript"  src="js/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
 			tinymce.init({
 				selector: "textarea.tinymce",
