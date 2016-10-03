@@ -7,8 +7,8 @@ $message="";
 
 if (!empty($_POST)) {
 
-  $user_login = mysql_query("SELECT username, password, id FROM users WHERE username='".strip_tags($_POST["username"])."' AND password=password('".strip_tags($_POST["password"])."') LIMIT 1");
-	$row  = mysql_fetch_array($user_login);
+  $user_login = mysqli_query($db_conn, "SELECT username, password, id FROM users WHERE username='".strip_tags($_POST["username"])."' AND password=password('".strip_tags($_POST["password"])."') LIMIT 1");
+	$row  = mysqli_fetch_array($user_login);
 
 	if (is_array($row)) {
 		$_SESSION["user_id"] = $row['id'];

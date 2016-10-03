@@ -5,27 +5,27 @@
 		include 'db/dbsetup.php'; //contains DB connection string and global variables
 		
 		//SQL Select Statements
-		$sqlSetup = mysql_query("SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
-		$rowSetup  = mysql_fetch_array($sqlSetup);
+		$sqlSetup = mysqli_query($db_conn, "SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
+		$rowSetup  = mysqli_fetch_array($sqlSetup);
 		
-		$sqlLanding = mysql_query("SELECT heading, introtext, skills, image FROM landing");
-		$rowLanding = mysql_fetch_array($sqlLanding);
+		$sqlLanding = mysqli_query($db_conn, "SELECT heading, introtext, skills, image FROM landing");
+		$rowLanding = mysqli_fetch_array($sqlLanding);
 		
-		$sqlAbout = mysql_query("SELECT heading, content FROM aboutus");
-		$rowAbout = mysql_fetch_array($sqlAbout);
+		$sqlAbout = mysqli_query($db_conn, "SELECT heading, content FROM aboutus");
+		$rowAbout = mysqli_fetch_array($sqlAbout);
 		
-		$sqlFooter = mysql_query("SELECT heading, content FROM footer");
-		$rowFooter = mysql_fetch_array($sqlFooter);
+		$sqlFooter = mysqli_query($db_conn, "SELECT heading, content FROM footer");
+		$rowFooter = mysqli_fetch_array($sqlFooter);
 		
-		$sqlContact = mysql_query("SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
-		$rowContact = mysql_fetch_array($sqlContact);
+		$sqlContact = mysqli_query($db_conn, "SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
+		$rowContact = mysqli_fetch_array($sqlContact);
 		
-		$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
-		$rowSocial = mysql_fetch_array($sqlSocial);
+		$sqlSocial = mysqli_query($db_conn, "SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
+		$rowSocial = mysqli_fetch_array($sqlSocial);
 		
-		$sqlPages = mysql_query("SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE active=1 ORDER BY datetime DESC"); //uses while loop
+		$sqlPages = mysqli_query($db_conn,"SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE active=1 ORDER BY datetime DESC"); //uses while loop
 		
-		$sqlPagesActive = mysql_query("SELECT id, title, thumbnail, content, active FROM pages WHERE active=1"); //uses while loop
+		$sqlPagesActive = mysqli_query($db_conn,"SELECT id, title, thumbnail, content, active FROM pages WHERE active=1"); //uses while loop
 	?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -154,7 +154,7 @@
             </div>
             <div class="row">
 			<?php
-				while ($rowPages  = mysql_fetch_array($sqlPages)) {
+				while ($rowPages  = mysqli_fetch_array($sqlPages)) {
 			?>
             <div class="col-sm-4 portfolio-item">
                 <a href="#portfolioModal<?php echo $rowPages["id"];?>" class="portfolio-link" data-toggle="modal">
@@ -342,7 +342,7 @@
         </a>
     </div>
 <?php
-	while ($rowPagesActive  = mysql_fetch_array($sqlPagesActive)) {
+	while ($rowPagesActive  = mysqli_fetch_array($sqlPagesActive)) {
 ?>
     <!-- Portfolio Modals -->
     <div class="portfolio-modal modal fade" id="portfolioModal<?php echo $rowPagesActive["id"];?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -399,6 +399,6 @@
 </html>
 <?php
 	//close all db connections
-	mysql_close($db_conn);
+	mysqli_close($db_conn);
 	die();
 ?>

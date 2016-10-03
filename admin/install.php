@@ -45,14 +45,14 @@ if (!file_exists($dbFileLoc)) {
 			// If it has a semicolon at the end, it's the end of the query
 			if (substr(trim($line), -1, 1) == ';') {
 			    // Perform the query
-			    mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+			    mysqli_query($db_conn, $templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
 			    // Reset temp variable to empty
 			    $templine = '';
 			}
 		}
 
 		$userInsert = "INSERT INTO users (username, password) VALUES ('".$_POST["username"]."', password('$_POST[password]'))";
-		mysql_query($userInsert);
+		mysqli_query($db_conn, $userInsert);
 
 		//TODO: write connection info to dbconn.php. include dbconn.php in dbsetup.php which contains global variables. use dbsetup.php in the header instead of dbconn.php.
         $dbfile = fopen($dbFileLoc, "w") or die("Unable to open file!");

@@ -36,23 +36,23 @@ include '../db/dbsetup.php';
     <![endif]-->
 
   <?php
-	$sqlSetup = mysql_query("SELECT tinymce, portfolioheading FROM setup");
-	$rowSetup  = mysql_fetch_array($sqlSetup);
+	$sqlSetup = mysqli_query($db_conn, "SELECT tinymce, portfolioheading FROM setup");
+	$rowSetup  = mysqli_fetch_array($sqlSetup);
 
-	$sqlLanding = mysql_query("SELECT heading FROM landing");
-	$rowLanding  = mysql_fetch_array($sqlLanding);
+	$sqlLanding = mysqli_query($db_conn, "SELECT heading FROM landing");
+	$rowLanding  = mysqli_fetch_array($sqlLanding);
 
-	$sqlAbout = mysql_query("SELECT heading FROM aboutus");
-	$rowAbout  = mysql_fetch_array($sqlAbout);
+	$sqlAbout = mysqli_query($db_conn, "SELECT heading FROM aboutus");
+	$rowAbout  = mysqli_fetch_array($sqlAbout);
 
-	$sqlContact = mysql_query("SELECT heading FROM contactus");
-	$rowContact  = mysql_fetch_array($sqlContact);
+	$sqlContact = mysqli_query($db_conn, "SELECT heading FROM contactus");
+	$rowContact  = mysqli_fetch_array($sqlContact);
 
-	$sqlFooter = mysql_query("SELECT heading FROM footer");
-	$rowFooter  = mysql_fetch_array($sqlFooter);
+	$sqlFooter = mysqli_query($db_conn, "SELECT heading FROM footer");
+	$rowFooter  = mysqli_fetch_array($sqlFooter);
 
-	$sqlSocial = mysql_query("SELECT heading FROM socialmedia");
-	$rowSocial  = mysql_fetch_array($sqlSocial);
+	$sqlSocial = mysqli_query($db_conn, "SELECT heading FROM socialmedia");
+	$rowSocial  = mysqli_fetch_array($sqlSocial);
 
 	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
 	?>

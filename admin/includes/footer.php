@@ -24,6 +24,6 @@ if(!defined('inc_access')) {
 </html>
 <?php
 //close all db connections
-	mysql_close($db_conn);
+	mysqli_close($db_conn);
 	die();
 ?>

@@ -14,12 +14,12 @@ include 'includes/header.php';
 	//update table on submit
 	if (!empty($_POST)) {
 		$landingUpdate = "UPDATE landing SET heading='".$_POST["landing_heading"]."', introtext='".$_POST["landing_introtext"]."', skills='".$_POST["landing_skills"]."', image='".$_POST["landing_image"]."' ";
-		mysql_query($landingUpdate);
+		mysqli_query($db_conn, $landingUpdate);
 		$pageMsg="<div class='alert alert-success'>The landing section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='landing.php'\">×</button></div>";
 	}
 
-	$sqlLanding = mysql_query("SELECT heading, introtext, skills, image FROM landing");
-	$row  = mysql_fetch_array($sqlLanding);
+	$sqlLanding = mysqli_query($db_conn, "SELECT heading, introtext, skills, image FROM landing");
+	$row  = mysqli_fetch_array($sqlLanding);
 ?>
 
    <div class="row">

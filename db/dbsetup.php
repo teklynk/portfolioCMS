@@ -11,8 +11,12 @@ $customCss_dir = '../css/custom.css'; //physical path to custom css file
 $customCss_url = "//".$_SERVER['HTTP_HOST']."/portfolioCMS/css/custom.css"; //web path to custom css file
 
 //establish db connection
-$db_conn = mysql_connect($db_servername, $db_username, $db_password);
-mysql_select_db($db_name, $db_conn);
+$db_conn = mysqli_connect($db_servername, $db_username, $db_password);
+mysqli_select_db($db_conn, $db_name);
+
+if (mysqli_connect_errno()) {
+     die(mysqli_connect_error());
+}
 
 //db connection is closed in includes/footer.php
 

@@ -5,12 +5,12 @@ include 'includes/header.php';
 	//update table on submit
 	if (!empty($_POST)) {
 		$socialUpdate = "UPDATE socialmedia SET heading='".$_POST["social_heading"]."', facebook='".$_POST["social_facebook"]."', twitter='".$_POST["social_twitter"]."', google='".$_POST["social_google"]."', linkedin='".$_POST["social_linkedin"]."', github='".$_POST["social_github"]."'";
-		mysql_query($socialUpdate);
+		mysqli_query($db_conn, $socialUpdate);
 		$pageMsg="<div class='alert alert-success'>The social media section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='socialmedia.php'\">×</button></div>";
 	}
 
-	$sqlSocial = mysql_query("SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
-	$row  = mysql_fetch_array($sqlSocial);
+	$sqlSocial = mysqli_query($db_conn, "SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
+	$row  = mysqli_fetch_array($sqlSocial);
 ?>
    <div class="row">
 		<div class="col-lg-12">

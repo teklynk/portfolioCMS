@@ -9,12 +9,12 @@ include 'includes/header.php';
 		$site_author = filter_var($_POST["site_author"], FILTER_SANITIZE_STRING);
 		$site_description = filter_var($_POST["site_description"], FILTER_SANITIZE_STRING);
 		$setupUpdate = "UPDATE setup SET title='".$_POST["site_title"]."', author='".$site_author."', keywords='".mysql_real_escape_string($site_keywords)."', description='".mysql_real_escape_string($site_description)."', headercode='".mysql_real_escape_string($_POST["site_header"])."', googleanalytics='".$_POST["site_google"]."', tinymce=".$_POST["site_tinymce"]." ";
-		mysql_query($setupUpdate);
+		mysqli_query($db_conn, $setupUpdate);
 		$pageMsg="<div class='alert alert-success'>The setup section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='setup.php'\">×</button></div>";
 	}
 
-	$sqlSetup = mysql_query("SELECT title, author, description, keywords, headercode, googleanalytics, tinymce FROM setup");
-	$row  = mysql_fetch_array($sqlSetup);
+	$sqlSetup = mysqli_query($db_conn, "SELECT title, author, description, keywords, headercode, googleanalytics, tinymce FROM setup");
+	$row  = mysqli_fetch_array($sqlSetup);
 
 ?>
    <div class="row">
