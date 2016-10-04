@@ -8,7 +8,7 @@ include 'includes/header.php';
 		$site_keywords = filter_var($_POST["site_keywords"], FILTER_SANITIZE_STRING);
 		$site_author = filter_var($_POST["site_author"], FILTER_SANITIZE_STRING);
 		$site_description = filter_var($_POST["site_description"], FILTER_SANITIZE_STRING);
-		$setupUpdate = "UPDATE setup SET title='".$_POST["site_title"]."', author='".$site_author."', keywords='".mysql_real_escape_string($site_keywords)."', description='".mysql_real_escape_string($site_description)."', headercode='".mysql_real_escape_string($_POST["site_header"])."', googleanalytics='".$_POST["site_google"]."', tinymce=".$_POST["site_tinymce"]." ";
+		$setupUpdate = "UPDATE setup SET title='".$_POST["site_title"]."', author='".$site_author."', keywords='".mysqli_real_escape_string($db_conn, $site_keywords)."', description='".mysqli_real_escape_string($db_conn, $site_description)."', headercode='".mysqli_real_escape_string($db_conn, $_POST["site_header"])."', googleanalytics='".$_POST["site_google"]."', tinymce=".$_POST["site_tinymce"]." ";
 		mysqli_query($db_conn, $setupUpdate);
 		$pageMsg="<div class='alert alert-success'>The setup section has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='setup.php'\">×</button></div>";
 	}
