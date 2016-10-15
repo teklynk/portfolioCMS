@@ -39,7 +39,7 @@ if ($_GET["preview"]>""){
 
 			//update data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
+				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",openmodal=".$_POST["page_modal"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
 				mysqli_query($db_conn, $pageUpdate);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
@@ -52,7 +52,7 @@ if ($_GET["preview"]>""){
 			$pageLabel = "New Page Title";
 			//insert data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].")";
+				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].",".$_POST["page_modal"].")";
 				mysqli_query($db_conn, $pageInsert);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been added.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
@@ -78,15 +78,32 @@ if ($_GET["preview"]>""){
 				$selActive1="";
 			}
 		}
+		if ($_GET["open_modal"]){
+			//open in modal
+			if ($row['openmdal']==1) {
+				$selOpenModal1="SELECTED";
+				$selOpenModal0="";
+			} else {
+				$selOpenModal0="SELECTED";
+				$selOpenModal1="";
+			}
+		}
 ?>
 	<form role="pageForm" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Status</label>
             <select class="form-control" name="page_status">
                 <option value="1" <?php if($_GET["editpage"]){echo $selActive1;}?>>Active</option>
-                <option value="0" <?php if($_GET["editpage"]){echo $selActive0;} ?>>Draft</option>
+                <option value="0" <?php if($_GET["editpage"]){echo $selActive0;}?>>Draft</option>
             </select>
         </div>
+				<div class="form-group">
+						<label>Open Modal Window</label>
+						<select class="form-control" name="page_modal">
+								<option value="1" <?php if($_GET["open_modal"]){echo $selOpenModal1;}?>>Yes</option>
+								<option value="0" <?php if($_GET["open_modal"]){echo $selOpenModal0;}?>>No</option>
+						</select>
+				</div>
 		<div class="form-group">
 			<label><?php echo $pageLabel; ?></label>
 			<input class="form-control" name="page_title" value="<?php if($_GET["editpage"]){echo $row['title'];} ?>" placeholder="Page Title">

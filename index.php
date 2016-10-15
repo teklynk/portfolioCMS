@@ -3,28 +3,28 @@
 <head>
 	<?php
 		include 'db/dbsetup.php'; //contains DB connection string and global variables
-		
+
 		//SQL Select Statements
 		$sqlSetup = mysqli_query($db_conn, "SELECT title, author, keywords, description, headercode, googleanalytics, portfolioheading FROM setup");
 		$rowSetup  = mysqli_fetch_array($sqlSetup);
-		
+
 		$sqlLanding = mysqli_query($db_conn, "SELECT heading, introtext, skills, image FROM landing");
 		$rowLanding = mysqli_fetch_array($sqlLanding);
-		
+
 		$sqlAbout = mysqli_query($db_conn, "SELECT heading, content FROM aboutus");
 		$rowAbout = mysqli_fetch_array($sqlAbout);
-		
+
 		$sqlFooter = mysqli_query($db_conn, "SELECT heading, content FROM footer");
 		$rowFooter = mysqli_fetch_array($sqlFooter);
-		
+
 		$sqlContact = mysqli_query($db_conn, "SELECT heading, email, sendtoemail, address, city, state, zipcode, phone FROM contactus");
 		$rowContact = mysqli_fetch_array($sqlContact);
-		
+
 		$sqlSocial = mysqli_query($db_conn, "SELECT heading, facebook, twitter, linkedin, google, github FROM socialmedia");
 		$rowSocial = mysqli_fetch_array($sqlSocial);
-		
-		$sqlPages = mysqli_query($db_conn,"SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE active=1 ORDER BY datetime DESC"); //uses while loop
-		
+
+		$sqlPages = mysqli_query($db_conn,"SELECT id, title, thumbnail, content, active, openmodal, datetime FROM pages WHERE active=1 ORDER BY datetime DESC"); //uses while loop
+
 		$sqlPagesActive = mysqli_query($db_conn,"SELECT id, title, thumbnail, content, active FROM pages WHERE active=1"); //uses while loop
 	?>
     <meta charset="utf-8">
@@ -53,7 +53,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 	<?php
 		//Custom CSS
 		if ($customCss_url !="") {
@@ -61,26 +61,26 @@
 		}
 		//Custom header code
 		echo $rowSetup["headercode"]."\n";
-		
+
 		//Google Analytics tracking code
 		if ($rowSetup["googleanalytics"]) {
 			$googleID = $rowSetup["googleanalytics"];
 	?>
 		<script type="text/javascript">
-			
+
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', '<?php echo $googleID ?>']);
 			_gaq.push(['_trackPageview']);
-			
+
 			(function() {
 			  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 			  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
-			
+
 		</script>
-	<?php 
-	} 
+	<?php
+	}
 	?>
 </head>
 
@@ -157,10 +157,17 @@
 				while ($rowPages  = mysqli_fetch_array($sqlPages)) {
 			?>
             <div class="col-sm-4 portfolio-item">
-                <a href="#portfolioModal<?php echo $rowPages["id"];?>" class="portfolio-link" data-toggle="modal">
+							<?php
+							if ($rowPages["openmodal"] == 1){
+								echo "<a href='#portfolioModal".$rowPages["id"]."' class='portfolio-link' data-toggle='modal'>";
+							}else{
+								echo "<a href='portfolio.php?id=".$rowPages["id"]."' class='portfolio-link'>";
+							}
+							?>
+
                     <div class="caption">
                     	<div class="caption-content">
-							<?php 
+							<?php
                             if ($rowPages["title"] != "") {
                                 echo "<div class='portfolio-title'>".$rowPages["title"]."</div>";
                             }
@@ -168,7 +175,7 @@
                         <i class="fa fa-search-plus fa-3x"></i>
                       </div>
                   </div>
-					<?php 
+					<?php
 						if ($rowPages["thumbnail"] != "") {
 							echo "<img src='uploads/".$rowPages["thumbnail"]."' class='img-responsive' title='".$rowPages["title"]."' alt='".$rowPages["title"]."'>";
 						} else {
@@ -177,8 +184,8 @@
 					?>
                 </a>
             </div>
-      		<?php 
-				} 
+      		<?php
+				}
 			?>
             </div>
         </div>
@@ -194,13 +201,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-lg-offset-0 text-center">  
+                <div class="col-lg-12 col-lg-offset-0 text-center">
                 	<?php echo $rowAbout["content"];?>
                 </div>
             </div>
         </div>
     </section>
- 
+
   <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -251,7 +258,7 @@
 								echo "<div id='success'><div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true' onclick=\"window.location.href='index.php#contact'\">×</button><strong>An error occured while sending your message. </strong></div></div>";
 							}
 						?>
-						
+
                         <div class="row">
                             <div class="form-group col-xs-12">
                                 <button type="submit" class="btn btn-success btn-lg">Send</button>
@@ -292,7 +299,7 @@
                     <div class="footer-col col-md-4">
                         <h3><?php echo $rowSocial["heading"];?></h3>
                         <ul class="list-inline">
-                            
+
 								<?php
 									if (!empty($rowSocial["facebook"])){
 										echo "<li><a href=".$rowSocial["facebook"]." class='btn-social btn-outline'><i class='fa fa-fw fa-facebook'></i></a></li>";
@@ -314,7 +321,7 @@
 										echo "<li><a href=".$rowSocial["linkedin"]." class='btn-social btn-outline'><i class='fa fa-fw fa-linkedin'></i></a></li>";
 									}
 								?>
-                            
+
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
@@ -357,10 +364,10 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                        		
+
                             <h2><?php echo $rowPagesActive["title"];?></h2>
                             <hr class="star-primary">
-							<?php 
+							<?php
 	                            if ($rowPagesActive["thumbnail"] != "") {
 	                                echo "<img src='uploads/".$rowPagesActive["thumbnail"]."' class='img-responsive img-centered' alt=''>";
 	                            } else {
@@ -377,8 +384,8 @@
         </div>
     </div>
 
-<?php 
-	} 
+<?php
+	}
 ?>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
