@@ -44,7 +44,7 @@ if ($_GET["preview"]>""){
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
 
-			$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE id='$thePageId'");
+			$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, openmodal, datetime FROM pages WHERE id='$thePageId'");
 			$row  = mysqli_fetch_array($sqlPages);
 
 		//Create new page
@@ -52,7 +52,7 @@ if ($_GET["preview"]>""){
 			$pageLabel = "New Page Title";
 			//insert data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].",".$_POST["page_modal"].")";
+				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active, openmodal) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].",".$_POST["page_modal"].")";
 				mysqli_query($db_conn, $pageInsert);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been added.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
@@ -80,7 +80,7 @@ if ($_GET["preview"]>""){
 		}
 		if ($_GET["open_modal"]){
 			//open in modal
-			if ($row['openmdal']==1) {
+			if ($row['openmodal']==1) {
 				$selOpenModal1="SELECTED";
 				$selOpenModal0="";
 			} else {
@@ -98,7 +98,7 @@ if ($_GET["preview"]>""){
             </select>
         </div>
 				<div class="form-group">
-						<label>Open Modal Window</label>
+						<label>Open in a Modal Window</label>
 						<select class="form-control" name="page_modal">
 								<option value="1" <?php if($_GET["open_modal"]){echo $selOpenModal1;}?>>Yes</option>
 								<option value="0" <?php if($_GET["open_modal"]){echo $selOpenModal0;}?>>No</option>
@@ -251,7 +251,7 @@ if ($_GET["preview"]>""){
 				</thead>
 				<tbody>
         <?php
-					$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active FROM pages ORDER BY datetime DESC");
+					$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, openmodal FROM pages ORDER BY datetime DESC");
 					while ($row  = mysqli_fetch_array($sqlPages)) {
 						$pageId=$row['id'];
 						$pageTitle=$row['title'];
