@@ -21,7 +21,7 @@ if ($_GET["preview"]>""){
 		<div class="col-lg-8">
 <?php
 
-	if ($_GET["newpage"] OR $_GET["editpage"]) {
+	if ($_GET["newpage"] || $_GET["editpage"]) {
 		//Upload function
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$pageMsg="";
@@ -39,12 +39,12 @@ if ($_GET["preview"]>""){
 
 			//update data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",openmodal=".$_POST["page_modal"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
+				$pageUpdate = "UPDATE pages SET title='".$_POST["page_title"]."',content='".$_POST["page_content"]."',thumbnail='".$_POST["page_image"]."',active=".$_POST["page_status"].",datetime='".date("Y-m-d H:i:s")."' WHERE id='$thePageId'";
 				mysqli_query($db_conn, $pageUpdate);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
 
-			$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, openmodal, datetime FROM pages WHERE id='$thePageId'");
+			$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, datetime FROM pages WHERE id='$thePageId'");
 			$row  = mysqli_fetch_array($sqlPages);
 
 		//Create new page
@@ -52,7 +52,7 @@ if ($_GET["preview"]>""){
 			$pageLabel = "New Page Title";
 			//insert data on submit
 			if (!empty($_POST["page_title"])) {
-				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active, openmodal) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].",".$_POST["page_modal"].")";
+				$pageInsert = "INSERT INTO pages (title, content, thumbnail, active) VALUES ('".$_POST["page_title"]."', '".$_POST["page_content"]."', '".$_POST["page_image"]."', ".$_POST["page_status"].")";
 				mysqli_query($db_conn, $pageInsert);
 				$pageMsg="<div class='alert alert-success'>The page ".$_POST["page_title"]." has been added.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			}
@@ -78,32 +78,15 @@ if ($_GET["preview"]>""){
 				$selActive1="";
 			}
 		}
-		if ($_GET["open_modal"]){
-			//open in modal
-			if ($row['openmodal']==1) {
-				$selOpenModal1="SELECTED";
-				$selOpenModal0="";
-			} else {
-				$selOpenModal0="SELECTED";
-				$selOpenModal1="";
-			}
-		}
 ?>
 	<form role="pageForm" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Status</label>
             <select class="form-control" name="page_status">
                 <option value="1" <?php if($_GET["editpage"]){echo $selActive1;}?>>Active</option>
-                <option value="0" <?php if($_GET["editpage"]){echo $selActive0;}?>>Draft</option>
+                <option value="0" <?php if($_GET["editpage"]){echo $selActive0;} ?>>Draft</option>
             </select>
         </div>
-				<div class="form-group">
-						<label>Open in a Modal Window</label>
-						<select class="form-control" name="page_modal">
-								<option value="1" <?php if($_GET["open_modal"]){echo $selOpenModal1;}?>>Yes</option>
-								<option value="0" <?php if($_GET["open_modal"]){echo $selOpenModal0;}?>>No</option>
-						</select>
-				</div>
 		<div class="form-group">
 			<label><?php echo $pageLabel; ?></label>
 			<input class="form-control" name="page_title" value="<?php if($_GET["editpage"]){echo $row['title'];} ?>" placeholder="Page Title">
@@ -160,10 +143,10 @@ if ($_GET["preview"]>""){
 		$movePageTitle = $_GET["movetitle"];
 
 		//delete page
-		if ($_GET["deletepage"] AND $_GET["deletetitle"] AND !$_GET["confirm"]) {
+		if ($_GET["deletepage"] && $_GET["deletetitle"] && !$_GET["confirm"]) {
 			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$delPageTitle."? <a href='?deletepage=".$delPageId."&deletetitle=".$delPageTitle."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
 			echo $deleteMsg;
-		} elseif ($_GET["deletepage"] AND $_GET["deletetitle"] AND $_GET["confirm"]=="yes") {
+		} elseif ($_GET["deletepage"] && $_GET["deletetitle"] && $_GET["confirm"]=="yes") {
 			//delete page after clicking Yes
 			$pageDelete = "DELETE FROM pages WHERE id='$delPageId'";
 			mysqli_query($db_conn, $pageDelete);
@@ -172,7 +155,7 @@ if ($_GET["preview"]>""){
 		}
 
 		//move pages to top of list
-    if (($_GET["movepage"] AND $_GET["movetitle"])) {
+    if (($_GET["movepage"] && $_GET["movetitle"])) {
         $pagesDateUpdate = "UPDATE pages SET datetime='".date("Y-m-d H:i:s")."' WHERE id='$movePageId'";
         mysqli_query($db_conn, $pagesDateUpdate);
         $pageMsg="<div class='alert alert-success'>".$movePageTitle." has been moved to the top.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='portfolio.php'\">×</button></div>";
@@ -251,7 +234,7 @@ if ($_GET["preview"]>""){
 				</thead>
 				<tbody>
         <?php
-					$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active, openmodal FROM pages ORDER BY datetime DESC");
+					$sqlPages = mysqli_query($db_conn, "SELECT id, title, thumbnail, content, active FROM pages ORDER BY datetime DESC");
 					while ($row  = mysqli_fetch_array($sqlPages)) {
 						$pageId=$row['id'];
 						$pageTitle=$row['title'];

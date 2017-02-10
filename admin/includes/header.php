@@ -5,6 +5,13 @@ if(!defined('inc_access')) {
 session_start();
 //DB connection string and Global variable
 include '../db/dbsetup.php';
+
+//IP Range is set in config
+if ($IPrange <> '') {
+	if (!strstr($_SERVER['REMOTE_ADDR'], $IPrange) ){
+		die('Permission denied'); //Do not execute any more code on the page
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +61,7 @@ include '../db/dbsetup.php';
 	$sqlSocial = mysqli_query($db_conn, "SELECT heading FROM socialmedia");
 	$rowSocial  = mysqli_fetch_array($sqlSocial);
 
-	if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"]) AND $rowSetup["tinymce"]==1) {
+	if (isset($_SESSION["user_id"]) && isset($_SESSION["user_name"]) && $rowSetup["tinymce"]==1) {
 	?>
 	  <script type="text/javascript" language="javascript"  src="js/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
@@ -95,7 +102,7 @@ include '../db/dbsetup.php';
 
     <div id="wrapper">
 <?php
-if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
+if (isset($_SESSION["user_id"]) && isset($_SESSION["user_name"])) {
 ?>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

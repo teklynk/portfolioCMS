@@ -19,9 +19,9 @@ include 'includes/header.php';
 
 		$deleteMsg = "";
 		//Delete file
-		if ($_GET["delete"] AND !$_GET["confirm"]) {
+		if ($_GET["delete"] && !$_GET["confirm"]) {
 			$deleteMsg="<div class='alert alert-danger'>Are you sure you want to delete ".$_GET["delete"]."? <a href='?delete=".$_GET["delete"]."&confirm=yes' class='alert-link'>Yes</a><button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='uploads.php'\">×</button></div>";
-		} elseif ($_GET["delete"] AND $_GET["confirm"]=="yes") {
+		} elseif ($_GET["delete"] && $_GET["confirm"]=="yes") {
 			unlink($target_dir.$_GET["delete"]);
 			$deleteMsg="<div class='alert alert-success'>".$_GET["delete"]." has been deleted.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='uploads.php'\">×</button></div>";
 		}

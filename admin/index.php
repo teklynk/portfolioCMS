@@ -18,7 +18,7 @@ if (!empty($_POST)) {
 	}
 }
 
-if (isset($_SESSION["user_id"]) AND isset($_SESSION["user_name"])) {
+if (isset($_SESSION["user_id"]) && isset($_SESSION["user_name"])) {
 	//header("Location: setup.php");
 	echo "<script>window.location.href='setup.php';</script>";
 }
