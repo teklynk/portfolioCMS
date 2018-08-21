@@ -1,3 +1,7 @@
+#This project is no longer being maintained. Please feel free to fork this project. It is a good starting point but is not bug free. If you have a bug fix please usbmit a pull request for me to review. 
+
+
+
 # portfolioCMS
 Bootstrap portfolio web site with admin panel. PHP, MySQL. Simple setup.
 Uses Bootstrap Freelancer Theme for the front end. http://startbootstrap.com/template-overviews/freelancer/
