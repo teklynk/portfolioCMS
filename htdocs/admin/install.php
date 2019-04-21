@@ -8,33 +8,43 @@ unset($_SESSION["user_name"]);
 // Name of the dbconn file
 $dbFileLoc = "../db/dbconn.php";
 // Name of the sql dump file
-$filename = '../db/bootstrapcms.sql';
+$sqlfilename = '../db/bootstrapcms.sql';
 
 if (!file_exists($dbFileLoc)) {
-   echo "$dbFileLoc does not exist";
+   echo "$dbFileLoc does not exist <br/>";
+   if (!is_writable($dbFileLoc)){
+       echo "$dbFileLoc is not writable<br/>";
+   }
 }
-if (!file_exists($filename)) {
-   echo "$filename does not exist";
+if (!file_exists($sqlfilename)) {
+   echo "$sqlfilename does not exist<br/>";
+   if (!is_readable($sqlfilename)){
+       echo "$sqlfilename unable to read file<br/>";
+   }
 }
 
 	if (!empty($_POST)) {
 		// MySQL host
-		$mysql_host = $_POST["dbserver"];
+		$mysql_host = mysqli_escape_string($db_conn, $_POST["dbserver"]);
 		// MySQL username
-		$mysql_username = $_POST["dbusername"];
+		$mysql_username = mysqli_escape_string($db_conn, $_POST["dbusername"]);
 		// MySQL password
-		$mysql_password = $_POST["dbpassword"];
+		$mysql_password = mysqli_escape_string($db_conn, $_POST["dbpassword"]);
 		// Database name
-		$mysql_database = $_POST["dbname"];
+		$mysql_database = mysqli_escape_string($db_conn, $_POST["dbname"]);
+		// CMS username
+        $cms_username = mysqli_escape_string($db_conn, $_POST["username"]);
+        // CMS password
+        $cms_password = mysqli_escape_string($db_conn, $_POST["password"]);
 
 		//establish db connection
-		$db_conn = mysqli_connect($mysql_host, $mysql_username, $mysql_password)or die('Error connecting to MySQL server: ' . mysqli_error());
-		mysqli_select_db($db_conn, $mysql_database)or die('Error selecting MySQL database: ' . mysqli_error());
+		$db_conn = mysqli_connect($mysql_host, $mysql_username, $mysql_password) or die('Error connecting to MySQL server: ' . mysqli_error($db_conn));
+		mysqli_select_db($db_conn, $mysql_database)or die('Error selecting MySQL database: ' . mysqli_error($db_conn));
 
 		// Temporary variable, used to store current query
 		$templine = '';
 		// Read in entire file
-		$lines = file($filename);
+		$lines = file($sqlfilename);
 
 		// Loop through each line
 		foreach ($lines as $line) {
@@ -47,13 +57,13 @@ if (!file_exists($filename)) {
 			// If it has a semicolon at the end, it's the end of the query
 			if (substr(trim($line), -1, 1) == ';') {
 			    // Perform the query
-			    mysqli_query($db_conn, $templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysqli_error() . '<br /><br />');
+			    mysqli_query($db_conn, $templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysqli_error($db_conn) . '<br /><br />');
 			    // Reset temp variable to empty
 			    $templine = '';
 			}
 		}
 
-		$userInsert = "INSERT INTO users (username, password) VALUES ('".$_POST["username"]."', password('$_POST[password]'))";
+		$userInsert = "INSERT INTO users (username, password) VALUES ('".$cms_username."', password('".$cms_password."'))";
 		mysqli_query($db_conn, $userInsert);
 
 		//TODO: write connection info to dbconn.php. include dbconn.php in dbsetup.php which contains global variables. use dbsetup.php in the header instead of dbconn.php.
@@ -74,7 +84,7 @@ if (!file_exists($filename)) {
 
         fclose($dbfile);
 
-        rename("install.php","install.old"); //rename install page so that it can not be accessed after the initial install
+        rename("install.php","~install.old"); //rename install page so that it can not be accessed after the initial install
         echo "<script>window.location.href='index.php';</script>"; //redirect to login page
 
 	}//the big IF
