@@ -1,0 +1,7 @@
+#portfolio .portfolio-item .portfolio-link .caption .caption-content {
+top: 35%;
+}
+.caption .caption-content div {
+padding: 8px;
+display: block;
+}
