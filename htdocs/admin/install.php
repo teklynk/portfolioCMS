@@ -6,9 +6,9 @@ unset($_SESSION["user_id"]);
 unset($_SESSION["user_name"]);
 
 // Name of the dbconn file
-$dbFileLoc = "../db/dbconn.php";
+$dbFileLoc = __DIR__ . "/../db/dbconn.php";
 // Name of the sql dump file
-$sqlfilename = '../db/bootstrapcms.sql';
+$sqlfilename = __DIR__ . "/../db/bootstrapcms.sql";
 
 if (!file_exists($dbFileLoc)) {
    echo "$dbFileLoc does not exist <br/>";

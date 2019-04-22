@@ -27,12 +27,13 @@
 *.rar
 *.tar
 *.zip
+*.old
 
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
+*.db
 
 # OS generated files #
 ######################
