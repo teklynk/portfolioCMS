@@ -6,3 +6,4 @@ Disallow: /css/
 Disallow: /img/
 Disallow: /fonts/
 Disallow: /includes/
+Disallow: /mail/
