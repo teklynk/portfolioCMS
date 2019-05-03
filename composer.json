@@ -1,9 +1,9 @@
 {
-    "name": "portfolio-cms",
+    "name": "rjones/portfolio-cms",
     "authors": [
         {
             "name": "teklynk",
-            "email": ""
+            "email": "ryanjones153@gmail.com"
         }
     ],
     "require": {}
