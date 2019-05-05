@@ -1,10 +1,7 @@
 {
-    "name": "rjones/portfolio-cms",
-    "authors": [
-        {
-            "name": "teklynk",
-            "email": "ryanjones153@gmail.com"
-        }
-    ],
-    "require": {}
+    "require": {
+        "robmorgan/phinx": "0.5.0",
+        "vlucas/phpdotenv": "2.4",
+        "monolog/monolog": "^1.0"
+    }
 }
