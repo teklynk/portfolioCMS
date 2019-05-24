@@ -42,13 +42,13 @@
     <title><?php echo $rowSetup["title"]; ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="/assets/css/freelancer.css" rel="stylesheet">
 
     <!-- Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -403,18 +403,18 @@ while ($rowPagesActive = mysqli_fetch_array($sqlPagesActive)) {
 }
 ?>
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="/assets/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/cbpanimatedheader.js"></script>
+<script src="/assets/js/classie.js"></script>
+<script src="/assets/js/cbpanimatedheader.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="js/freelancer.js"></script>
+<script src="/assets/js/freelancer.js"></script>
 
 </body>
 

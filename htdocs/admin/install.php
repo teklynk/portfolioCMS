@@ -63,7 +63,7 @@ if (!empty($_POST)) {
         }
     }
 
-    $userInsert = "INSERT INTO users (username, password) VALUES ('" . $cms_username . "', password('" . $cms_password . "');)";
+    $userInsert = "INSERT INTO users (username, password) VALUES ('" . $cms_username . "', password('" . $cms_password . "'));";
     mysqli_query($db_conn, $userInsert);
 
     //TODO: write connection info to dbconn.php. include dbconn.php in dbsetup.php which contains global variables. use dbsetup.php in the header instead of dbconn.php.
