@@ -409,7 +409,7 @@ while ($rowPagesActive = mysqli_fetch_array($sqlPagesActive)) {
 <script src="/assets/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/assets/js/jquery.easing.min.js"></script>
 <script src="/assets/js/classie.js"></script>
 <script src="/assets/js/cbpanimatedheader.js"></script>
 
