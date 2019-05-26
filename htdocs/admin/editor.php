@@ -13,7 +13,7 @@ if (!empty($_POST)) {
         $data = filter_var($_POST["edit_css"], FILTER_SANITIZE_STRING);
         fwrite($handle, $data);
         //header("Location: editor.php");
-        $pageMsg = "<div class='alert alert-success'>" . $customCss_dir . " has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='editor.php'\">×</button></div>";
+        $pageMsg = "<div class='alert alert-success'>" . $customCss_url . " has been updated.<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='editor.php'\">×</button></div>";
 
         closedir($handle);
     }
@@ -36,7 +36,7 @@ if (!empty($_POST)) {
         <form id="editForm" method="post" action="editor.php">
 
             <div class="form-group">
-                <label><?php echo $customCss_dir; ?></label>
+                <label><?php echo $customCss_url; ?></label>
                 <textarea class="form-control input-sm" name="edit_css" rows="20"><?php echo $data; ?></textarea>
             </div>
             <div class="form-group">

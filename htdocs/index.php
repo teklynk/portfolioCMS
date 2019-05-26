@@ -139,7 +139,7 @@
                 if ($rowLanding["image"] != "") {
                     echo "<img class='img-responsive' src='uploads/" . $rowLanding["image"] . "' alt=''>";
                 } else {
-                    echo "<img class='img-responsive' src='img/profile.png' alt=''>";
+                    echo "<img class='img-responsive' src='/assets/img/profile.png' alt=''>";
                 }
                 ?>
                 <div class="intro-text">
@@ -181,7 +181,7 @@
                         if ($rowPages["thumbnail"] != "") {
                             echo "<img src='uploads/" . $rowPages["thumbnail"] . "' class='img-responsive' title='" . $rowPages["title"] . "' alt='" . $rowPages["title"] . "'>";
                         } else {
-                            echo "<img src='img/portfolio/cake.png' class='img-responsive' title='" . $rowPages["title"] . "' alt='" . $rowPages["title"] . "'>";
+                            echo "<img src='/assets/img/cake.png' class='img-responsive' title='" . $rowPages["title"] . "' alt='" . $rowPages["title"] . "'>";
                         }
                         ?>
                     </a>
@@ -384,7 +384,7 @@ while ($rowPagesActive = mysqli_fetch_array($sqlPagesActive)) {
                             if ($rowPagesActive["thumbnail"] != "") {
                                 echo "<img src='uploads/" . $rowPagesActive["thumbnail"] . "' class='img-responsive img-centered' alt=''>";
                             } else {
-                                echo "<img src='img/portfolio/cake.png' class='img-responsive' alt=''>";
+                                echo "<img src='/assets/img/cake.png' class='img-responsive' alt=''>";
                             }
                             ?>
                             <?php echo $rowPagesActive["content"]; ?>

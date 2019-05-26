@@ -80,8 +80,8 @@ if ($_GET["delete"] && !$_GET["confirm"]) {
                         echo "<tr>
 								<td>" . $file . "</td>
 								<td>" . $modDate . "</td>
-								<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$file', '$target_dir$file')\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
-								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?delete=$target_dir$file'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
+								<td><button type='button' class='btn btn-xs btn-default' onclick=\"showMyModal('$file', '$image_url$file')\"><i class='fa fa-fw fa-image'></i> Preview</button></td>
+								<td><button type='button' class='btn btn-xs btn-default' onclick=\"window.location.href='?delete=$file'\"><i class='fa fa-fw fa-trash'></i> Delete</button></td>
 								</tr>";
                     }
                     closedir($handle);
