@@ -7,11 +7,18 @@ $message="";
 
 if (!empty($_POST)) {
 
-  $user_login = mysqli_query($db_conn, "SELECT username, password, id FROM users WHERE username='".strip_tags($_POST["username"])."' AND password=password('".strip_tags($_POST["password"])."') LIMIT 1");
-	$row  = mysqli_fetch_array($user_login);
+    // Select user
+    $user_name = mysqli_query($db_conn, "SELECT username, password, id FROM users WHERE username='".strip_tags($_POST["username"])."' LIMIT 1");
+	$row_username  = mysqli_fetch_array($user_name);
 
-	if (is_array($row)) {
-		$_SESSION["user_id"] = $row['id'];
+    $storedHashPassword = $row_username['password'];
+    $submittedPassword = $_POST['password'];
+
+	if (is_array($row_username) && password_verify($submittedPassword, $storedHashPassword)) {
+        $user_login = mysqli_query($db_conn, "SELECT username, password, id FROM users WHERE username='".strip_tags($_POST["username"])."' AND password='".$storedHashPassword."' LIMIT 1");
+        $row  = mysqli_fetch_array($user_login);
+
+        $_SESSION["user_id"] = $row['id'];
 		$_SESSION["user_name"] = $row['username'];
 	} else {
 		$message = "<div class='alert alert-danger' role='alert'>Invalid Username or Password!<button type='button' class='close' data-dismiss='alert' onclick=\"window.location.href='index.php'\">×</button></div>";

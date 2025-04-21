@@ -1,4 +1,6 @@
 <?php
+$currentPagePath = $_SERVER['PHP_SELF'];
+
 if(!defined('inc_access')) {
    die('Direct access not permitted');
 }
@@ -43,6 +45,8 @@ if ($IPrange <> '') {
     <![endif]-->
 
   <?php
+if ($currentPagePath != "/admin/install.php") {
+
 	$sqlSetup = mysqli_query($db_conn, "SELECT tinymce, portfolioheading FROM setup");
 	$rowSetup  = mysqli_fetch_array($sqlSetup);
 
@@ -96,6 +100,7 @@ if ($IPrange <> '') {
 		</script>
 	<?php
 	}
+}
 	?>
 </head>
 <body>

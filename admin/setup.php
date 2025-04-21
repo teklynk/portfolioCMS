@@ -1,5 +1,6 @@
 <?php
 define('inc_access', TRUE);
+
 include 'includes/header.php';
 
 	$pageMsg="";

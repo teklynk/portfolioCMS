@@ -53,7 +53,10 @@ if (!file_exists($filename)) {
 			}
 		}
 
-		$userInsert = "INSERT INTO users (username, password) VALUES ('".$_POST["username"]."', password('$_POST[password]'))";
+		// Hash the password securely using PHP
+		$hashed_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+		$userInsert = "INSERT INTO users (username, password) VALUES ('".$_POST["username"]."', '".$hashed_password."')";
 		mysqli_query($db_conn, $userInsert);
 
 		//TODO: write connection info to dbconn.php. include dbconn.php in dbsetup.php which contains global variables. use dbsetup.php in the header instead of dbconn.php.
