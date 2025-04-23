@@ -28,7 +28,7 @@ include 'includes/header.php';
 			echo $pageMsg;
 		}
 		?>
-			<form role="contactForm" method="post" action="contact_me.php">
+			<form role="contactForm" method="post" action="contactus.php">
 
 				<div class="form-group">
 					<label>Heading</label>
